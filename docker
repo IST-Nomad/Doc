@@ -1,1 +1,16 @@
-// install
+// install 
+curl https://get.docker.com -o install.sh && sh install.sh
+//добавить группу
+sudo groupadd docker
+//добавить текущего юзера к группе
+sudo usermod -aG docker $USER
+//проверить работает ли демон
+sudo systemctl status docker.service
+//перезапуск групп
+newgrp docker
+//тестовый контейнер
+docker run hello-world
+
+
+//KMS Server
+docker run -d -p 1688:1688 --restart=always --name vlmcsd mikolatero/vlmcsd
