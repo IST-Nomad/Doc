@@ -1,1 +1,36 @@
-tftp
+/загрузка конфигурации на tftp сервер
+copy startup-config tftp:
+10.129.135.110
+
+/настройка snmp на cisco
+configure terminal
+snmp-server community public ro
+snmp-server contact Batr <poplavkovsemen@gmail.com>
+exit
+wr mem
+
+/настройка порта для скачивания/загрузки ПО/конфигурации cisco
+conf t
+ip tftp source-interface fastEthernet0/1
+ip tftp min-timeout 10
+
+
+/настройка в режиме rommon для загрузки ПО c tftp сервера
+IP_ADDRESS=10.129.139.249
+IP_SUBNET_MASK=255.255.255.0
+DEFAULT_GATEWAY=10.129.139.254
+TFTP_SERVER=10.129.139.251
+FE_PORT=7
+TFTP_TIMEOUT=10000
+TFTP_FILE=c890-universalk9-mz.154-3.M6a.bin
+sync
+tftpdnld -r
+
+/команды rommon
+dir flash:
+delete c890-universalk9-mz.154-3.M6a.bin
+boot flash:/c890-universalk9-mz.154-3.M6a.bin
+format flash
+boot flash:c890-universalk9-mz.154-3.M6a.bin
+
+reload in 1 //перезагрузка через час

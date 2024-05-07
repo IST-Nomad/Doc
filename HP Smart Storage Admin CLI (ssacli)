@@ -1,0 +1,111 @@
+
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl all show
+Show controllers status
+
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl all show status
+Show detailed controllers information
+
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl all show detail
+Show controllers configuration
+
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl all show config
+Rescan for new devices Useful after swapping disks in bays, etc...
+
+./opt/smartstorageadmin/ssacli/bin/ssacli rescan
+Show all physical disks (or their status) (controller slot 0)
+
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 pd all show
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 pd all show status
+Show all physical disks detailed information (controller slot 0)
+
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 pd all show detail
+Show logical drives (or their status) (controller slot 0, all or specific logical drive(s))
+
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 ld all show
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 ld all show status
+
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 ld 1 show
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 ld 1 show status
+Show detailed logical drives information (controller slot 0, all or specific logical drive(s))
+
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 ld all show detail
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 ld 1 show detail
+Show array information (controller slot 0, array A)
+
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 array a show
+Show array status (controller slot 0, all arrays)
+
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 array all show status
+Create new RAID 0 logical drive (controller slot 0, disk in port 1I:box 1:bay 1)
+
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 create type=ld drives=1I:1:1 raid=0
+Create new RAID 1 logical drive (controller slot 0, disks in port 1I:box 1:bay 1 and 2)
+
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 create type=ld drives=1I:1:1,1I:1:2 raid=1
+Create new RAID 5 logical drive (controller slot 0, diks in port 1I:box 1:bay 1 to 4)
+
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 create type=ld drives=1I:1:1-1I:1:4 raid=5
+Delete logical drive (controller slot 0, logical drive 1)
+
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 ld 1 delete
+Add new physical disks to logical drive (controller slot 0, logical drive 1, disks in port 1I:box 1:bay 6 and 7)
+
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 ld 2 add drives=1I:1:6,1I:1:7
+Add spare disks (controller slot 0, logical drive 1, array A, disks in port 1I:box 1:bay 6 and 7)
+
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 array a add spares=1I:1:6,1I:1:7
+Add global spare disks (controller slot 0, logical drive 1, all arrays, disks in port 1I:box 1:bay 6 and 7)
+
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 array all add spares=1I:1:6,1I:1:7
+Turn on/off blink logical drive LED (controller slot 0, logical drive 1)
+
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 ld 1 modify led=on
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 ld 1 modify led=off
+Turn on/off blink physical disk LED (controller slot 0, physical disk port 1I:box 1:bay 1)
+
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 pd 1I:1:1 modify led=on
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 pd 1I:1:1 modify led=off
+Modify smart array cache read and write ratio (controller slot 0, cacheratio 80% read/20% write)
+
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 modify cacheratio=80/20
+Show physical drive write cache status (controller slot 0)
+
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 modify dwc=?
+Enable/disable physical drive write cache (controller slot 0) Important: Because physical drive write cache is not battery-backed, you could lose data if a power failure occurs during a write process. To minimize this possibility, use a backup power supply.
+
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 modify dwc=enable
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 modify dwc=disable
+Show status of smart array write cache when no battery is present (no-battery write cache option, controller slot 0)
+
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 modify nbwc=?
+Enable/disable smart array write cache when no battery is present (no-battery write cache option, controller slot 0)
+
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 modify nbwc=enable
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 modify nbwc=disable
+Enable/disable smart array cache for certain Logical Volume (controller slot 0, logical drive 1)
+
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 ld 1 modify arrayaccelerator=enable
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 ld 1 modify arrayaccelerator=disable
+Enable/disable SSD Smart Path (controller slot 0, array A)
+
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 array a modify ssdsmartpath=enable
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 array a modify ssdsmartpath=disable
+Show spare activation mode
+
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 modify spareactivationmode=?
+Set spare activation mode
+
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 modify spareactivationmode=predictive
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 modify spareactivationmode=failure
+Show rebuild priority
+
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 modify rp=?
+Modify rebuild priority
+
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 modify rp=low
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 modify rp=medium
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 modify rp=mediumhigh
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 modify rp=high
+Erase Physical Drive (controller slot 0, physical disk port 1I:box 1:bay 1)
+
+./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 pd 1I:1:1 modify erase
