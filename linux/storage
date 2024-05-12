@@ -31,4 +31,4 @@ lsblk -f
 //разметка диска
 fdisk /dev/sdb
 //форматирование
-sudo mkfs -t ext4 /dev/sdb1
+sudo mkfs -t ntfs /dev/sdc1
