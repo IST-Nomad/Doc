@@ -45,3 +45,9 @@ Set-NetFirewallProfile -Profile Domain, Public, Private -Enabled False
 dcdiag /s:DC1.TCBDomen.trustcombank.ru
 netdiag /fix
 dcdiag /fix
+
+//доменное имя (запись dns)
+nslookup 10.129.135.205
+
+//Отчет по доменной политики, запускать из папки куда нужно положить файл html с отчетом
+gpresult.exe /H GPReport.html

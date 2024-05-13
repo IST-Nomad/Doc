@@ -3,5 +3,5 @@ git clone https://github.com/IST-Nomad/Doc.git
 git remote add origin https://github.com/IST-Nomad/Doc.git
 git add .
 git commit -am "comment"
-git push origin main
-git pull origin main
+git push origin main //отправить
+git pull origin main //получить
