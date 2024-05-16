@@ -1,8 +1,10 @@
 #!/bin/bash
-cd chia-blockchain/ && . ./activate && chia start all
+cd /home/chia-blockchain/ && . ./activate && chia start all
 
 
 //загрузка скрипта при старте, на файл дожны быть права
+sudo apt install cron
+sudo systemctl enable cron
 crontab -e
 @reboot /usr/sbin/chia.sh
 
@@ -13,5 +15,5 @@ Pool public key (m/12381/8444/1/0): b2a9f4820273d2fbc13a8385d64b4ee2b0cd80ec545d
 First wallet address: xch1khrv3ma42c6sr9gcnnsrln97thx4npcjwx893ydf77ryg2kdnz9sxw4yzt
 PS C:\Users\chia\AppData\Local\chia-blockchain\app-1.2.0\resources\app.asar.unpacked\daemon>
 
-chia plots create -k 32 -n 100 -f 8265a6b714e5d2db7de970096a44bce469959ee542e84559ff0c3d952d8b86d8bd49be3fd1dbde88ca7b2d6ddf4f15ba -p b2a9f4820273d2fbc13a8385d64b4ee2b0cd80ec545d6ee212e836722bcafe970d589badbfd363ae2f92c55f12e32332 -t /mnt/sdb -d /mnt/sdc
-
+sudo su
+chia plots create -k 32 -n 10 -r 8 -f 8265a6b714e5d2db7de970096a44bce469959ee542e84559ff0c3d952d8b86d8bd49be3fd1dbde88ca7b2d6ddf4f15ba -p b2a9f4820273d2fbc13a8385d64b4ee2b0cd80ec545d6ee212e836722bcafe970d589badbfd363ae2f92c55f12e32332 -t /plots -d /plots &

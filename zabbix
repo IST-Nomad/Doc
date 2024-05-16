@@ -15,3 +15,9 @@ xcopy "\\10.129.135.205\data\Soft\zabbix\*.*" "C:\zabbix\*.*" /s /q
 C:\zabbix\bin\zabbix_agentd.exe -c C:\zabbix\conf\zabbix_agentd.conf -i
 C:\zabbix\bin\zabbix_agentd.exe --start
 :END
+
+//Установка zabbix агента на ubuntu
+sudo apt-get install zabbix-agent
+sudo nano /etc/zabbix/zabbix_agentd.conf
+sudo systemctl restart zabbix-agent
+sudo systemctl status zabbix-agent
