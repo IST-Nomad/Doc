@@ -1,0 +1,250 @@
+//В обоих случаях, как для VMware ESX, так и для ESXi, виртуальные свитчи (vSwitches) могут быть сконфигурированы с помощью графического интерфейса (GUI) или с использованием командной строки, например через ssh. 
+ 
+//В связи с тем, что еще встречаются сервера под управлением vSphere 4-х версий, где мог использоваться ESX, то я буду давать пояснения, для какой версии будут подходить команды. Напоминаю, что начиная с 5-й версии ESX заменен ESXi
+ 
+//В принципе для ESX будет использована команда esxcfg-vswitch, она же будет справедлива и для ESXi, но команды выделенные только для ESXi, обратной совместимости не имеют.
+ 
+Просмотреть текущую версию вы можете - 
+# vmware -v
+VMware ESXi 5.5.0 build-2143827
+Просмотр всех виртуальных свитчей на хосте
+Для обоих версий:
+ 
+Для просмотра всех vSwitches используем опцию -l. Она покажет все имеющиееся свитчи и информацию по группам портов (PortGroup)
+# esxcfg-vswitch -l
+Switch Name      Num Ports   Used Ports  Configured Ports  MTU     Uplinks   
+vSwitch0         1622        9           128               1500    vmnic3,vmnic1
+
+  PortGroup Name        VLAN ID  Used Ports  Uplinks   
+  VM Network            0        3           vmnic3,vmnic1
+  Management Network    0        1           vmnic3,vmnic1
+
+Switch Name      Num Ports   Used Ports  Configured Ports  MTU     Uplinks   
+vSwitch1         1622        4           16                1500    vmnic2    
+
+  PortGroup Name        VLAN ID  Used Ports  Uplinks   
+  i-net2                0        1           vmnic2    
+
+Switch Name      Num Ports   Used Ports  Configured Ports  MTU     Uplinks   
+vSwitch2         1622        4           128               1500    vmnic0    
+
+  PortGroup Name        VLAN ID  Used Ports  Uplinks   
+  VMkernel              0        1           vmnic0    
+Сервер у меня "боевой", поэтому и в выводе несколько виртуальных свитчей
+ 
+Для ESXi вы можете использовать другую команду. По умолчанию, каждый хост ESXi имеет один виртуальный интерфейс с именем vSwitch0
+# esxcli network vswitch standard list 
+vSwitch0
+   Name: vSwitch0
+   Class: etherswitch
+   Num Ports: 1622
+   Used Ports: 9
+   Configured Ports: 128
+   MTU: 1500
+   CDP Status: listen
+   Beacon Enabled: false
+   Beacon Interval: 1
+   Beacon Threshold: 3
+   Beacon Required By: 
+   Uplinks: vmnic1, vmnic3
+   Portgroups: VM Network, Management Network
+
+vSwitch1
+   Name: vSwitch1
+   Class: etherswitch
+   Num Ports: 1622
+   Used Ports: 4
+   Configured Ports: 16
+   MTU: 1500
+   CDP Status: listen
+   Beacon Enabled: false
+   Beacon Interval: 1
+   Beacon Threshold: 3
+   Beacon Required By: 
+   Uplinks: vmnic2
+   Portgroups: i-net2
+
+vSwitch2
+   Name: vSwitch2
+   Class: etherswitch
+   Num Ports: 1622
+   Used Ports: 4
+   Configured Ports: 128
+   MTU: 1500
+   CDP Status: listen
+   Beacon Enabled: false
+   Beacon Interval: 1
+   Beacon Threshold: 3
+   Beacon Required By: 
+   Uplinks: vmnic0
+   Portgroups: VMkernel
+Добавить новый виртуальный свитч
+Для добавления нового виртуального свитча используем опцию -a, в нашем примере создадим виртуальный свитч vswitch4
+# esxcfg-vswitch -a vSwitch4
+Для ESXI вы можете использовать другую команду -
+# esxcli network vswitch standard add -v vSwitch4
+?Количество логических портов на виртуальном свитче 56.
+
+Максимальное количество виртуальных свитчей на одиночном ESXi -127
+ 
+Когда две или более виртуальные машины подключены к некоему виртуальному свитчу, то трафик между ними гоняется на локальном уровне, если необходим выход наружу, то в игру вступает физический сетевой адаптер, подключенный к данному виртуальному свитчу.
+Добавить порт на vSwitch
+Для обоих версий:
+ 
+В предыдущем примере мы создали виртуальный свитч, теперь необходимо добавить сетевой порт (uplink) к данному свитчу. Для этого используется следующий синтаксис:
+ 
+esxcfg-vswitch –L <NIC> <vswitch name>
+ 
+где <NIC> это имя сетевого интерфейса,
+ 
+<vswitch name> - имя виртуального свитча
+ 
+Для примера:
+# esxcfg-vswitch -L vmnic2 vSwitch4
+Просмотрим получившийся результат:
+
+# esxcfg-vswitch -l
+Switch Name      Num Ports   Used Ports  Configured Ports  MTU     Uplinks   
+vSwitch0         1622        9           128               1500    vmnic3,vmnic1
+
+  PortGroup Name        VLAN ID  Used Ports  Uplinks   
+  VM Network            0        3           vmnic3,vmnic1
+  Management Network    0        1           vmnic3,vmnic1
+
+Switch Name      Num Ports   Used Ports  Configured Ports  MTU     Uplinks   
+vSwitch1         1622        2           16                1500              
+
+  PortGroup Name        VLAN ID  Used Ports  Uplinks   
+  i-net2                0        1                     
+
+Switch Name      Num Ports   Used Ports  Configured Ports  MTU     Uplinks   
+vSwitch2         1622        4           128               1500    vmnic0    
+
+  PortGroup Name        VLAN ID  Used Ports  Uplinks   
+  VMkernel              0        1           vmnic0    
+
+Switch Name      Num Ports   Used Ports  Configured Ports  MTU     Uplinks   
+vSwitch4         1622        3           128               1500    vmnic2    
+
+  PortGroup Name        VLAN ID  Used Ports  Uplinks  
+ 
+Для ESXi можно использовать другую команду -
+# esxcli network vswitch standard uplink add -u vmnic2 -v vSwitch4
+Создать группу портов
+Группа портов это логическая сегментация vSwitch, для идентификации каждая группа портов имеет свое имя. К порт группам присоединяются сетевые интерфейсы Ваших виртуальных машин. 
+ 
+В примере ниже, мы рассмотрим как создать порт группу и назначить для нее VLAN. В основном, VLAN ID 0 отключают теги VLAN на порт группе.
+ 
+Синтаксис добавления новой порт группы:
+ 
+esxcfg-vswitch –A <Port Group Name> <vSwitch name>
+ 
+где Port Group Name - имя группы портов,
+vSwitch name имя виртуального свитча
+ 
+Синтаксис добавления VLAN к порт группе:
+ 
+esxcfg-vswitch <vSwitch name> –v <VLAN ID> -p <Port groupname>
+ 
+где VLAN ID - номер VLAN
+Для обоих систем:
+# esxcfg-vswitch -A VM_Traffic_on_VLAN130 vSwitch4
+# esxcfg-vswitch vSwitch4 -v 130 -p "VM_Traffic_on_VLAN130"
+# esxcfg-vswitch -A VM_Traffic_on_VLAN110 vSwitch4
+# esxcfg-vswitch vSwitch4 -v 110 -p "VM_Traffic_on_VLAN110"
+Просмотрим что у нас получилось:
+
+# esxcfg-vswitch -l
+
+Switch Name      Num Ports   Used Ports  Configured Ports  MTU     Uplinks   
+vSwitch0         1622        9           128               1500    vmnic3,vmnic1
+
+  PortGroup Name        VLAN ID  Used Ports  Uplinks   
+  VM Network            0        3           vmnic3,vmnic1
+  Management Network    0        1           vmnic3,vmnic1
+
+....................... 
+
+Switch Name      Num Ports   Used Ports  Configured Ports  MTU     Uplinks   
+vSwitch4         1622        3           128               1500    vmnic2    
+
+  PortGroup Name        VLAN ID  Used Ports  Uplinks   
+  VM_Traffic_on_VLAN110  110      0           vmnic2
+  VM_Traffic_on_VLAN130  130      0           vmnic2
+?Для ESXi будет справедлива также команда:
+
+# esxcli network vswitch standard portgroup add -p VM_Traffic_on_VLAN130 -v vSwitch4
+Проверка суще?ствования виртуального свитча
+Для проверки наличия в системе виртуального свитча с заданным именем, используем опцию -c. Если команда возвращает 1, значит свитч с таким именем уже существует, если 0, то такого свитча еще нет.
+
+# esxcfg-vswitch -c vSwitch4
+1
+
+# esxcfg-vswitch -c vSwitch5
+0
+Проверка существования порт группы
+Используется ключ -С, также как и в предыдущеи примере, если возвращается 1, значит группа портов уже существует, если 0, то не существует.
+
+# esxcfg-vswitch -C VM_Traffic_on_VLAN110
+1
+
+# esxcfg-vswitch -C VM_Traffic_on_VLAN204
+0
+Задание сети для vMotion
+Что такое vMotion расписывать не буду, ибо по этому вопросу очень много расписано в официальной документации. Итак для добавления сети vMotion и присвоения VMkernel IP для обработки трафика vMotion, выполняем следующее
+# esxcfg-vswitch -A "vMotionNetwork" vSwitch4
+# esxcfg-vmknic -a -i 212.86.102.187 -n 255.255.255.0 -m 1500 "vMotionNetwork"
+# vim-cmd hostsvc/vmotion/vnic_set vmk1
+Просмотрим конфигурацию vMotion:
+
+# esxcfg-vmknic -l
+Interface  Port Group/DVPort/Opaque Network        IP Family IP Address                              Netmask         Broadcast       MAC Address       MTU     TSO MSS   Enabled Type                
+vmk0       Management Network                      IPv4      172.16.5.25                             255.255.255.0   172.16.5.255    00:1e:67:0e:51:28 1500    65535     true    STATIC              
+vmk1       vMotionNetwork                          IPv4      212.86.102.187                          255.255.255.0   212.86.102.255  00:50:56:62:18:e1 1500    65535     true    STATIC    
+Установка MTU для виртуального свитча
+Для обоих систем: 
+# esxcfg-vswitch -m 9000 vSwitch4
+Альтернативно для ESXi:
+
+# esxcli network vswitch standard set --mtu=9000 --vswitch-name=vSwitch4
+Удаление порт группы с vSwitch
+Для удаления используем следующую команду:
+# esxcfg-vswitch -D VM_Traffic_on_VLAN110 vSwitch4
+Для отключения сетевого адаптера используем:
+
+# esxcfg-vswitch -U vmnic2 vSwitch4
+Просмотр настроек сетевой политики на vSwitch
+Ниже приведены примеры команд для просмотра сетевых политик для определенного виртуального свитча.
+Сетевы политики включают в себя политику безопасности, политику по трафику и политику отказов.
+
+# esxcli network vswitch standard policy security get -v vSwitch4
+   Allow Promiscuous: false
+   Allow MAC Address Change: true
+   Allow Forged Transmits: true
+ 
+
+# esxcli network vswitch standard policy failover get -v vSwitch4
+   Load Balancing: srcport
+   Network Failure Detection: link
+   Notify Switches: true
+   Failback: true
+   Active Adapters:
+   Standby Adapters: vmnic2
+   Unused Adapters:
+ 
+
+# esxcli network vswitch standard policy shaping get -v vSwitch4
+   Enabled: false
+   Average Bandwidth: -1 Kbps
+   Peak Bandwidth: -1 Kbps
+   Burst Size: -1 Kib
+Изменение настроек сетевой политики для vSwitch
+Вы также можете изменить политики, листинг которых приведен выше, это касается все трех политик (безопасности, трафика, отказов). 
+В примере ниже, мы изменим стандартную политику и поменяет пункт “Allow MAC Address Change” из стандартного значение true на false  
+
+# esxcli network vswitch standard policy security set --allow-mac-change=false -v vSwitch4
+
+# esxcli network vswitch standard policy security get -v vSwitch3
+   Allow Promiscuous: false
+   Allow MAC Address Change: false
+   Allow Forged Transmits: true

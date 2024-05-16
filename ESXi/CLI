@@ -1,0 +1,34 @@
+Basically, the ESXCLI syntax is as follows:
+
+#esxcli [options] {namespace}+ {cmd} [cmd options]
+
+Thus, ESXCLI consists of branches that are the main categories (namespaces) of ESXCLI commands. Notice that esxcli commands are case sensitive, similarly to other console commands used in ESXi. The entire list of all available ESXCLI namespaces and commands is displayed after running the command:
+
+#esxcli esxcli command list
+
+The list of available ESXCLI commands depends on the ESXi version. New commands can be added.
+
+Hence, the list of top ESXCLI namespaces for ESXi 8.0 is as follows:
+
+#device // device manager commands
+#esxcli // commands related to ESXCLI itself
+#fcoe // Fibre Channel over Ethernet commands
+#graphics // VMware graphics commands
+#hardware // commands for checking hardware properties and configuring hardware
+#iscsi // VMware iSCSI commands
+#network // this namespace includes a wide range of commands for managing general host network settings (such as the IP address, DNS settings of an ESXi host, firewall) and virtual networking components such as vSwitch, port groups, etc.
+#nvme // managing extensions for VMware NVMe driver
+#rdma // commands for managing the remote direct memory access protocol stack
+#sched // commands used for configuring scheduling and VMkernel system properties
+#software // managing ESXi software images and packages for ESXi
+#storage // commands used to manage storage
+#system // commands for configuring VMkernel system properties, the kernel core system and system services
+#vm // some commands that can be used to control virtual machine operations
+#vsan // VMware vSAN commands
+
+The main commands appear as verbs indicating the same action:
+
+#list // show the list of objects available for the defined namespace (for example, esxcli hardware bootdevice list – list available boot devices)
+#get// get the value of the defined setting or property (for instance, esxcli hardware clock get – check the time set)
+#set // set the necessary parameter manually (for example, esxcli hardware clock set -y 2024 -s 00 – set the year to 2024 and set the seconds to 00)
+#load/unload // load/unload system configuration (esxcli network #firewall load // load the firewall module and firewall settings stored in the configuration file)
