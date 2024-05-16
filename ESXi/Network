@@ -1,0 +1,29 @@
+//Check the status of active network connections:
+#esxcli network ip connection list
+//View the list of installed network adapters:
+#esxcli network nic list
+//Display the information about network interfaces:
+#esxcli network ip interface list
+//Display the information about IP addresses of the network interfaces that are present on the server:
+#esxcli network ip interface ipv4 get
+//Display the network information for VMs:
+#esxcli network vm list
+//View the domain search settings:
+#esxcli network ip dns search list
+//View the DNS servers set in the network settings:
+#esxcli network ip dns server list
+//List virtual switches and port groups:
+#esxcli network vswitch standard list
+//Show statistics for the vmnic0 network interface:
+#esxcli network nic stats get -n vmnic0
+//Check the firewall status and rule settings:
+#esxcli network firewall get
+#esxcli network firewall ruleset list
+
+//You can temporarily disable the firewall on an ESXi host for troubleshooting:
+#esxcli network firewall set --enabled false
+
+//The firewall must be enabled with the command:
+#esxcli network firewall set --enabled true
+
+

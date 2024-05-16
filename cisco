@@ -57,3 +57,26 @@ sh mac address-table | inc 74f2
 
 //Если в сети офиса их несколько, то определить имя и адрес управления нужного нам соседнего коммутатора помогут команды 'sh cdp neighbors', которая покажется имена и связанные порты всех коммутаторов Cisco, подключенных к текущему и 'sh cdp neighbors detail', в выводе которой дополнительно указаны ip адреса для управления соседними коммутаторами
 
+
+//Подключение AUX > console
+//Настройка управляющего роутера
+enable
+conf t
+line aux 0
+speed 9600
+databits 8
+parity none
+stopbits 1
+exec-timeout 0 0
+no activation-character
+no editing
+transport input telnet
+transport output none
+escape-character NONE
+
+//Подключение 
+//Узнать номер порта AUX
+show line
+//Если AUX висит на линии 1, тогда порт подключения: 2000 + 1 = 2001
+telnet 10.5.0.1 2001
+//где 10.5.0.1 - адрес внутреннего интерфейса роутера с которого идет подключение (управляющего)
