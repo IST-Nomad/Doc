@@ -6,6 +6,25 @@
 заходим в "enable" и вводим "copy running-config startup-config"
 устройство обнулено
 
+//Первичная настройка
+conf t
+//Пароль на вход
+enable password "password"
+//Скрываем пароль в конфиге
+service password-encryption
+//задаем secret пароль (приоритет выше чем обычный)
+enable secret "password"
+//создаем пользователя "cisco" уровень привелегий 15 (самый высокий) пароль "cisco"
+username cisco privilege 15 password cisco
+
+//настройка терминальных линий (0 - console)
+line console 0
+// использовать локальную базу учетных записей
+login local
+
+
+
+
 /загрузка конфигурации на tftp сервер
 copy startup-config tftp:
 10.129.135.110
