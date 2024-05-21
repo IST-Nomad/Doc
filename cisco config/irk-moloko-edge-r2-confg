@@ -130,6 +130,10 @@ track 1 ip sla 1
 track 2 ip sla 2
  delay down 35 up 35
 !
+crypto ipsec profile HO-VPN
+ set security-association lifetime seconds 43200
+ set transform-set AES256-SHA512-TUNN 
+ set pfs group20
 ! 
 interface Tunnel1
  description HO-EDGE-R2 standby VTI

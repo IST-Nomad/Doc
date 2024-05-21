@@ -1,0 +1,4 @@
+//узнать время, часовой пояс, дату
+date
+//Сменить часовой пояс
+sudo timedatectl set-timezone 'Asia/Irkutsk'
