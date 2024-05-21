@@ -9,13 +9,13 @@
 //Первичная настройка
 conf t
 //Пароль на вход
-enable password "password"
+enable password {PASSWORD}
 //Скрываем пароль в конфиге
 service password-encryption
 //задаем secret пароль (приоритет выше чем обычный)
-enable secret "password"
-//создаем пользователя "cisco" уровень привелегий 15 (самый высокий) пароль "cisco"
-username cisco privilege 15 password cisco
+enable secret {PASSWORD}
+//создаем пользователя {USERNAME} уровень привелегий 15 (самый высокий) пароль {PASSWORD}
+username {USERNAME} privilege 15 password {PASSWORD}
 
 //настройка терминальных линий (0 - console)
 line console 0
@@ -27,22 +27,20 @@ login local
 
 /загрузка конфигурации на tftp сервер
 copy startup-config tftp:
-10.129.135.110
+{10.129.135.110}
 
 /настройка snmp на cisco
-configure terminal
+conf t
 snmp-server community public ro
 snmp-server contact Batr <poplavkovsemen@gmail.com>
-exit
-wr mem
 
 /настройка порта для скачивания/загрузки ПО/конфигурации cisco
 conf t
-ip tftp source-interface fastEthernet0/1
+ip tftp source-interface {fastEthernet0/1}
 ip tftp min-timeout 10
 
 
-/настройка в режиме rommon для загрузки ПО c tftp сервера
+/настройка в режиме rommon для загрузки ПО c tftp сервера, нет истории команд и автозаполнения, лучше использовать терминальный клиент для копирования команд
 IP_ADDRESS=10.129.139.249
 IP_SUBNET_MASK=255.255.255.0
 DEFAULT_GATEWAY=10.129.139.254
@@ -55,24 +53,21 @@ tftpdnld -r
 
 /команды rommon
 dir flash:
-delete c890-universalk9-mz.154-3.M6a.bin
-boot flash:/c890-universalk9-mz.154-3.M6a.bin
-format flash
-boot flash:c890-universalk9-mz.154-3.M6a.bin
+boot flash:{/c890-universalk9-mz.154-3.M6a.bin}
 
-reload in 1 //перезагрузка через час
+reload in 1 //перезагрузка через минуту
 
 //показывает список всех МАС адресов активных устройств, которые подключены к коммутатору
 show mac address-table
 
 //узнаем IP-адрес по каждому MAC-адресу
-sh ip arp | i 5254.0028.6a01
+sh ip arp | i {5254.0028.6a01}
 
 //Для поиска MAC используется команда sh arp | inc x.x.x.x, где х.х.х.х – ip адрес интересующего хоста
-sh arp | inc 192.168.10.100
+sh arp | inc {192.168.10.100}
 
 //фильтр по нужному МАС адресу, причем достаточно последних 4х символов
-sh mac address-table | inc 74f2
+sh mac address-table | inc {74f2}
 
 //Если в сети офиса их несколько, то определить имя и адрес управления нужного нам соседнего коммутатора помогут команды 'sh cdp neighbors', которая покажется имена и связанные порты всех коммутаторов Cisco, подключенных к текущему и 'sh cdp neighbors detail', в выводе которой дополнительно указаны ip адреса для управления соседними коммутаторами
 
@@ -105,3 +100,10 @@ ctrl + shift + 6 и сразу нажимаем x
 show session
 //закрываем нужную
 disconnect 1
+
+// после удачной проверки можно сохранить подключение telnet 10.5.0.1 2001 | Это соедиеннеие не нужно разрывать, просто закрыть терминал
+
+//Передача файлов через xmodem
+copy (откуда) xmodem: (куда) flash:
+//спросит имя файла, соответственно указать
+как пойдет ожидание на прием (в зависимости от программы) включить передачу через xmodem

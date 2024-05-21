@@ -11,3 +11,9 @@
 11 копировать конфу добавлением
 
 
+redundancy
+  ^
+% Invalid input detected at '^' marker.
+
+Profile HO-VPN is not defined.
+Profile HO-VPN is not defined.%Default route without gateway, if not a point-to-point interface, may impact performance
