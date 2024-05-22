@@ -1,0 +1,14 @@
+$ sudo apt update
+$ sudo apt install tftpd-hpa
+sudo systemctl status tftpd-hpa
+sudo nano /etc/default/tftpd-hpa
+{
+# /etc/default/tftpd-hpa
+TFTP_USERNAME="zabbix"
+TFTP_DIRECTORY="/tftp"
+TFTP_ADDRESS=":69"
+TFTP_OPTIONS="--secure --create"
+}
+sudo mkdir /tftp
+sudo chown zabbix:zabbix /tftp
+sudo systemctl restart tftpd-hpa

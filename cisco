@@ -45,7 +45,7 @@ IP_ADDRESS=10.129.139.249
 IP_SUBNET_MASK=255.255.255.0
 DEFAULT_GATEWAY=10.129.139.254
 TFTP_SERVER=10.129.139.251
-FE_PORT=7
+FE_PORT=0
 TFTP_TIMEOUT=10000
 TFTP_FILE=c890-universalk9-mz.154-3.M6a.bin
 sync
@@ -53,7 +53,7 @@ tftpdnld -r
 
 /команды rommon
 dir flash:
-boot flash:{/c890-universalk9-mz.154-3.M6a.bin}
+boot flash:{c2600-io3-mz.121-6.5.bin}
 
 reload in 1 //перезагрузка через минуту
 

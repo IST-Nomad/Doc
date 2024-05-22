@@ -32,3 +32,54 @@ lsblk -f
 fdisk /dev/sdb
 //форматирование
 sudo mkfs -t ntfs /dev/sdc1
+
+sudo -su
+//сколько занимает журнал
+# journalctl --disk-usage
+Archived and active journals take up 952.2M on disk.
+//очищаем журнал
+# journalctl --vacuum-size=50M
+# journalctl --verify
+//проверяем
+# journalctl --disk-usage
+Archived and active journals take up 56.0M on disk.
+редактируем конфиг
+# nano /etc/systemd/journald.conf
+SystemMaxUse=50M
+SystemMaxFileSize=12M
+# systemctl restart systemd-journald
+
+//расширение LVM
+# pvs
+# vgs
+# lvs
+//На данном этапе у нас есть один PV (physical volume) один VG (volume group) и один LV (logical volume).
+в зависимости от того где есть  свободное место, там и начинать
+Для создания нового раздела на жестком диске мы воспользуется программой fdisk:
+# fdisk /dev/vda
+n – для создания нового раздела на диске; p – для присвоения primary новому разделу.
+//Теперь необходимо сменить тип раздела с Linux на Linux LVM: t – для смены типа созданного раздела. Указываем номер нашего раздела: 8e – это hex-код для типа LVM.
+После того, как мы успешно создали раздел, необходимо создать новый physical volume на основе этого раздела:
+# pvcreate /dev/vda2 
+//Следующим шагом будет расширение нашей volume group посредством добавления в неё созданного physical volume.
+# vgextend ubuntu-vg /dev/vda2
+//Теперь проверим сколько доступного свободного места в нашей VG на данный момент:
+# vgs
+/*
+root@zabbix:/home/zabbix# lvdisplay
+  --- Logical volume ---
+  LV Path                /dev/ubuntu-vg/ubuntu-lv
+  LV Name                ubuntu-lv
+  VG Name                ubuntu-vg
+
+root@zabbix:/home/zabbix# vgdisplay
+  --- Volume group ---
+  VG Name               ubuntu-vg           
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Alloc PE / Size       2560 / 10.00 GiB
+  Free  PE / Size       2105 / 8.22 GiB
+root@zabbix:/home/zabbix# lvextend -l +2105 /dev/ubuntu-vg/ubuntu-lv
+  Size of logical volume ubuntu-vg/ubuntu-lv changed from 10.00 GiB (2560 extents) to 18.22 GiB (4665 extents).
+  Logical volume ubuntu-vg/ubuntu-lv successfully resized.
+root@zabbix:/home/zabbix# resize2fs /dev/ubuntu-vg/ubuntu-lv
+*/
