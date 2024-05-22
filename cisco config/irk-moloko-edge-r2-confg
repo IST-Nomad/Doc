@@ -116,9 +116,10 @@ object-group network RFC6890
  203.0.113.0 255.255.255.0
  240.0.0.0 240.0.0.0
 !
-username krona privilege 15 password 7 08134444101F544E4B58
+username krona privilege 15 password 7 08134444101F544E4B58 Крона1993
+username kronadm privilege 15 secret 5 $1$Nyj3$BqVX/UTEh9NZ9p6.oQqFQ.
+username ciscoadm privilege 15 password 7 113B110F0E145A555D79
 !
-redundancy
 !
 !
 !
@@ -130,11 +131,16 @@ track 1 ip sla 1
 track 2 ip sla 2
  delay down 35 up 35
 !
+crypto ipsec security-association lifetime seconds 86400
+!
+crypto ipsec transform-set AES256-SHA512-TUNN esp-aes 256 esp-sha512-hmac 
+ mode tunnel
+!
 crypto ipsec profile HO-VPN
  set security-association lifetime seconds 43200
  set transform-set AES256-SHA512-TUNN 
  set pfs group20
-! 
+!
 interface Tunnel1
  description HO-EDGE-R2 standby VTI
  bandwidth 1000
@@ -163,7 +169,24 @@ interface Tunnel2
  tunnel protection ipsec profile HO-VPN
 !
 interface FastEthernet0
- no ip address
+ description Inside-LAN
+ ip address 10.129.139.252 255.255.255.0
+ ip tcp adjust-mss 1360
+ ip policy route-map PBR-LAN136
+ glbp 139 ip 10.129.139.254
+ glbp 139 timers 5 15
+ glbp 139 timers redirect 1800 14500
+ glbp 139 priority 240
+ glbp 139 preempt delay minimum 60
+ glbp 139 weighting 254 lower 235 upper 243
+ glbp 139 client-cache maximum 100 timeout 600
+ glbp 139 load-balancing host-dependent
+ glbp 139 name HA136
+ glbp 139 weighting track 1 decrement 10
+ glbp 139 weighting track 2 decrement 10
+ glbp 139 forwarder preempt delay minimum 60
+ duplex auto
+ speed auto
 !
 interface FastEthernet1
  no ip address
@@ -175,34 +198,18 @@ interface FastEthernet3
  no ip address
 !
 interface FastEthernet4
- no ip address
- no ip redirects
- no ip proxy-arp
+ description Outside-Inet
+ ip address 62.141.98.154 255.255.255.0
+ ip access-group Outside-IN in
+ no ip unreachables
+ ip nat outside
+ ip inspect fw-outside out
+ ip virtual-reassembly in
  duplex auto
  speed auto
  no cdp enable
 !
-!
-interface Vlan1
- description Inside-LAN
- ip address 10.129.139.252 255.255.255.0
- no ip redirects
- standby 139 preempt
- ip tcp adjust-mss 1360
- ip policy route-map PBR-LAN139
- glbp 139 ip 10.129.139.254
- glbp 139 timers 5 15
- glbp 139 timers redirect 1800 14500
- glbp 139 priority 254
- glbp 139 preempt delay minimum 60
- glbp 139 weighting 254 lower 235 upper 243
- glbp 139 client-cache maximum 100 timeout 600
- glbp 139 load-balancing host-dependent
- glbp 139 name HA139
- glbp 139 weighting track 1 decrement 10
- glbp 139 weighting track 2 decrement 10
- glbp 139 forwarder preempt delay minimum 60
-!
+
 interface Async1
  no ip address
  encapsulation slip
@@ -241,32 +248,32 @@ ip ssh dh min size 2048
 !
 ip access-list extended FIREWALL
  permit tcp any any eq 22
- permit ip host 195.206.62.5 host 109.194.20.26
- permit ip host 195.206.62.2 host 109.194.20.26
- permit ip host 195.206.62.3 host 109.194.20.26
- permit ip host 195.206.62.4 host 109.194.20.26
- permit ip host 194.186.61.185 host 109.194.20.26
- permit ip host 194.186.61.186 host 109.194.20.26
- permit ip host 194.186.61.187 host 109.194.20.26
- permit ip host 194.186.61.188 host 109.194.20.26
- permit ip host 194.186.61.189 host 109.194.20.26
- permit ip host 194.186.61.190 host 109.194.20.26
+ permit ip host 195.206.62.5 host 62.141.98.154
+ permit ip host 195.206.62.2 host 62.141.98.154
+ permit ip host 195.206.62.3 host 62.141.98.154
+ permit ip host 195.206.62.4 host 62.141.98.154
+ permit ip host 194.186.61.185 host 62.141.98.154
+ permit ip host 194.186.61.186 host 62.141.98.154
+ permit ip host 194.186.61.187 host 62.141.98.154
+ permit ip host 194.186.61.188 host 62.141.98.154
+ permit ip host 194.186.61.189 host 62.141.98.154
+ permit ip host 194.186.61.190 host 62.141.98.154
  permit udp host 91.142.144.76 eq domain any
- permit icmp host 91.142.144.76 host 109.194.20.26
- permit icmp any host 109.194.20.26
+ permit icmp host 91.142.144.76 host 62.141.98.154
+ permit icmp any host 62.141.98.154
  permit icmp any host 195.206.62.2
  permit icmp any host 195.206.62.3
  permit icmp any host 195.206.62.4
  permit icmp any host 195.206.62.5
- permit ahp host 195.206.62.4 host 109.194.20.26
- permit esp host 195.206.62.4 host 109.194.20.26
- permit udp host 195.206.62.4 host 109.194.20.26 eq isakmp
- permit gre host 91.229.154.2 host 109.194.20.26
- permit ahp host 91.229.154.2 host 109.194.20.26
- permit esp host 91.229.154.2 host 109.194.20.26
- permit udp host 91.229.154.2 host 109.194.20.26 eq isakmp
+ permit ahp host 195.206.62.4 host 62.141.98.154
+ permit esp host 195.206.62.4 host 62.141.98.154
+ permit udp host 195.206.62.4 host 62.141.98.154 eq isakmp
+ permit gre host 91.229.154.2 host 62.141.98.154
+ permit ahp host 91.229.154.2 host 62.141.98.154
+ permit esp host 91.229.154.2 host 62.141.98.154
+ permit udp host 91.229.154.2 host 62.141.98.154 eq isakmp
  deny   ip any any log
- permit ip host 109.194.20.26 91.229.154.0 0.0.0.255
+ permit ip host 62.141.98.154 91.229.154.0 0.0.0.255
 ip access-list extended NAT
  permit ip 10.129.139.0 0.0.0.255 any
  permit ip 10.129.135.0 0.0.0.255 any
@@ -293,9 +300,9 @@ ip access-list extended inside
  permit gre 10.129.139.0 0.0.0.255 any
  deny   ip any any log
 ip access-list extended outside
- permit tcp any host 109.194.20.26 eq 22
- permit tcp any host 109.194.20.26 eq domain
- permit icmp any host 109.194.20.26
+ permit tcp any host 62.141.98.154 eq 22
+ permit tcp any host 62.141.98.154 eq domain
+ permit icmp any host 62.141.98.154
  deny   ip any any log
 !
 ip sla auto discovery

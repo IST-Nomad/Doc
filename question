@@ -1,19 +1,19 @@
 1 how to change foreign disk to online dell server
 2 Как добавить неразмеченную область диску Linux
-3 Проливка IOS RT Cisco через AUX
+#3 https://getnoc.com/ru/
 4 Убрать telnet, настроить ssh, настроить console на Cisco
-5 Перезагрузка по времени Cisco
-6 Как автоматом добавить description порту Cisco
+
+
 7 Неретина двухсторонняя печать из 1С
 8 OMSA vesion 11 для разных дистрибутивов
-9 
-10 
-11 копировать конфу добавлением
 
 
-redundancy
-  ^
-% Invalid input detected at '^' marker.
 
 Profile HO-VPN is not defined.
 Profile HO-VPN is not defined.%Default route without gateway, if not a point-to-point interface, may impact performance
+
+
+
+username krona privilege 15 password 7 08134444101F544E4B58 Крона1993
+username kronadm privilege 15 secret 5 $1$Nyj3$BqVX/UTEh9NZ9p6.oQqFQ.
+username ciscoadm privilege 15 password 7 113B110F0E145A555D79
