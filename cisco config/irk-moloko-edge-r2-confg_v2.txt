@@ -1,7 +1,5 @@
 
 !
-! Last configuration change at 09:43:22 IRK Thu Apr 18 2024 by krona
-! NVRAM config last updated at 09:43:25 IRK Thu Apr 18 2024 by krona
 !
 version 15.4
 service timestamps debug datetime msec localtime year
@@ -74,7 +72,6 @@ no ipv6 cef
 !
 !
 !
-multilink bundle-name authenticated
 !
 !
 !
@@ -90,31 +87,8 @@ archive
  log config
   logging enable
   hidekeys
-object-group network GOROD-IN 
- 91.229.154.0 255.255.255.0
- 46.28.18.0 255.255.255.0
- 82.202.189.0 255.255.255.0
- 185.129.103.0 255.255.255.0
 !
-object-group network GOROD-OUT 
- host 10.129.139.5
- host 10.129.139.4
 !
-object-group network RFC6890 
- 0.0.0.0 255.0.0.0
- 10.0.0.0 255.0.0.0
- 100.64.0.0 255.192.0.0
- 127.0.0.0 255.0.0.0
- 169.254.0.0 255.255.0.0
- 172.16.0.0 255.240.0.0
- 192.0.0.0 255.255.255.0
- 192.0.2.0 255.255.255.0
- 192.88.99.0 255.255.255.0
- 192.168.0.0 255.255.0.0
- 198.18.0.0 255.254.0.0
- 198.51.100.0 255.255.255.0
- 203.0.113.0 255.255.255.0
- 240.0.0.0 240.0.0.0
 !
 username krona privilege 15 password 7 08134444101F544E4B58 Крона1993
 username kronadm privilege 15 secret 5 $1$Nyj3$BqVX/UTEh9NZ9p6.oQqFQ.
@@ -125,21 +99,6 @@ username ciscoadm privilege 15 password 7 113B110F0E145A555D79
 !
 !
 !
-track 1 ip sla 1
- delay down 35 up 35
-!
-track 2 ip sla 2
- delay down 35 up 35
-!
-crypto ipsec security-association lifetime seconds 86400
-!
-crypto ipsec transform-set AES256-SHA512-TUNN esp-aes 256 esp-sha512-hmac 
- mode tunnel
-!
-crypto ipsec profile HO-VPN
- set security-association lifetime seconds 43200
- set transform-set AES256-SHA512-TUNN 
- set pfs group20
 !
 interface Tunnel1
  description HO-EDGE-R2 standby VTI
@@ -152,7 +111,6 @@ interface Tunnel1
  tunnel mode ipsec ipv4
  tunnel destination 195.206.62.4
  tunnel path-mtu-discovery
- tunnel protection ipsec profile HO-VPN
 !
 !
 interface Tunnel2
@@ -166,27 +124,9 @@ interface Tunnel2
  tunnel mode ipsec ipv4
  tunnel destination 185.242.116.74
  tunnel path-mtu-discovery
- tunnel protection ipsec profile HO-VPN
 !
 interface FastEthernet0
- description Inside-LAN
- ip address 10.129.139.252 255.255.255.0
- ip tcp adjust-mss 1360
- ip policy route-map PBR-LAN136
- glbp 139 ip 10.129.139.254
- glbp 139 timers 5 15
- glbp 139 timers redirect 1800 14500
- glbp 139 priority 240
- glbp 139 preempt delay minimum 60
- glbp 139 weighting 254 lower 235 upper 243
- glbp 139 client-cache maximum 100 timeout 600
- glbp 139 load-balancing host-dependent
- glbp 139 name HA136
- glbp 139 weighting track 1 decrement 10
- glbp 139 weighting track 2 decrement 10
- glbp 139 forwarder preempt delay minimum 60
- duplex auto
- speed auto
+ no ip address
 !
 interface FastEthernet1
  no ip address
@@ -209,21 +149,31 @@ interface FastEthernet4
  speed auto
  no cdp enable
 !
-
+interface Vlan1
+ description Inside-LAN
+ ip address 10.129.139.251 255.255.255.0
+ no ip redirects
+ standby 139 preempt
+ ip tcp adjust-mss 1360
+ ip policy route-map PBR-LAN139
+ glbp 139 ip 10.129.139.254
+ glbp 139 timers 5 15
+ glbp 139 timers redirect 1800 14500
+ glbp 139 priority 254
+ glbp 139 preempt delay minimum 60
+ glbp 139 weighting 254 lower 235 upper 243
+ glbp 139 client-cache maximum 100 timeout 600
+ glbp 139 load-balancing host-dependent
+ glbp 139 name HA139
+ glbp 139 weighting track 1 decrement 10
+ glbp 139 weighting track 2 decrement 10
+ glbp 139 forwarder preempt delay minimum 60
+!
 interface Async1
  no ip address
  encapsulation slip
 !
 !
-router eigrp 65000
- network 0.0.0.0
- neighbor 172.16.139.9 Tunnel1
- neighbor 172.16.139.5 Tunnel2
- passive-interface default
- no passive-interface Tunnel1
- no passive-interface Tunnel2
- eigrp router-id 10.0.139.2
- eigrp stub connected
 !
 ip forward-protocol nd
 no ip http server
@@ -242,9 +192,6 @@ ip route 0.0.0.0 0.0.0.0 FastEthernet4
 ip route 10.0.0.0 255.0.0.0 Null0
 ip route 172.16.0.0 255.240.0.0 Null0
 ip route 192.168.0.0 255.255.0.0 Null0
-ip ssh rsa keypair-name IRK-MOLOKO-EDGE-R2
-ip ssh version 2
-ip ssh dh min size 2048
 !
 ip access-list extended FIREWALL
  permit tcp any any eq 22
@@ -287,10 +234,6 @@ ip access-list extended Outside-IN
  permit ip 195.206.62.0 0.0.0.7 any
  permit ip 185.242.116.72 0.0.0.7 any
  deny   ip any any
-ip access-list extended PBR-ANY2RFC6890
- permit ip any object-group RFC6890
-ip access-list extended PBR-LAN139
- permit ip 10.129.139.0 0.0.0.255 any
 ip access-list extended inside
  permit tcp any any established
  permit tcp 10.129.139.0 0.0.0.255 any
@@ -305,54 +248,20 @@ ip access-list extended outside
  permit icmp any host 62.141.98.154
  deny   ip any any log
 !
-ip sla auto discovery
-ip sla 1
- icmp-echo 172.16.139.5
- request-data-size 1000
- threshold 50
- timeout 100
- frequency 10
-ip sla schedule 1 life forever start-time now
-ip sla 2
- icmp-echo 172.16.139.9
- request-data-size 1000
- threshold 50
- timeout 100
- frequency 10
-ip sla schedule 2 life forever start-time now
-dialer-list 1 protocol ip permit
 !
-route-map PBR-LAN139 deny 10
- match ip address PBR-ANY2RFC6890
 !
 route-map PBR-LAN139 permit 20
  match ip address PBR-LAN139
  set ip next-hop recursive 10.129.135.112
 !
-route-map nonat permit 10
- match ip address 111
 !
 snmp-server community public RO
 snmp-server contact Batr <poplavkovsemen@gmail.com>
 !
-access-list 1 permit 10.129.139.0 0.0.0.255
-access-list 101 permit icmp any any
-access-list 111 permit ip object-group GOROD-OUT object-group GOROD-IN
-access-list 2035 permit ip 10.129.139.0 0.0.0.255 10.129.135.0 0.0.0.255
 !
 !
 !
-control-plane
-!
-!
-mgcp behavior rsip-range tgcp-only
-mgcp behavior comedia-role none
-mgcp behavior comedia-check-media-src disable
-mgcp behavior comedia-sdp-force disable
-!
-mgcp profile default
-!
-!
+
 !
 !
 !
@@ -363,7 +272,6 @@ line con 0
  no modem enable
 line 1
  modem InOut
- flowcontrol hardware
 line aux 0
 line vty 0 4
  exec-timeout 0 0
@@ -373,9 +281,5 @@ line vty 0 4
  transport input ssh
  transport output ssh
 !
-scheduler max-task-time 5000
-ntp server 194.190.168.1 source FastEthernet4
-ntp server 46.254.241.75 source FastEthernet4
-ntp server 89.109.251.22 prefer source FastEthernet4
 !
 end

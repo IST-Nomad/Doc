@@ -107,3 +107,57 @@ disconnect 1
 copy (откуда) xmodem: (куда) flash:
 //спросит имя файла, соответственно указать
 как пойдет ожидание на прием (в зависимости от программы) включить передачу через xmodem
+
+
+ description Inside-DMZ
+ encapsulation dot1Q 100
+ ip address 10.129.139.240 255.255.255.0 secondary
+ ip address 10.129.139.241 255.255.255.0
+ ip nat inside
+ no ip virtual-reassembly in
+ ip tcp adjust-mss 1360
+
+
+!
+line con 0
+ logging synchronous
+line aux 0
+ access-class 1 in
+ exec-timeout 0 0
+ no activation-character
+ no editing
+ transport input telnet
+ transport output none
+ escape-character NONE
+ stopbits 1
+line vty 0 4
+ session-timeout 60 
+ exec-timeout 60 0
+ privilege level 15
+ logging synchronous
+ exec prompt timestamp
+ transport input ssh
+ transport output telnet ssh
+line vty 5 15
+ session-timeout 60 
+ exec-timeout 60 0
+ privilege level 15
+ transport input ssh
+ transport output ssh
+!
+
+
+
+Router>enable
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#int fa 0
+Router(config-if)#switchport access vlan 1
+Router(config-if)#no shutdown
+Router(config-if)#exit
+Router(config)#int vlan 1
+Router(config-if)#ip add 172.16.1.133 255.255.255.0
+Router(config-if)#no shutdown
+Router(config-if)#exit
+Router(config)#^Z
+Router#

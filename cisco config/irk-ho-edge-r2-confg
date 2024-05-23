@@ -1,14 +1,14 @@
 
 !
-! Last configuration change at 12:06:25 IRK Thu Apr 18 2024 by krona
-! NVRAM config last updated at 12:06:28 IRK Thu Apr 18 2024 by krona
-! NVRAM config last updated at 12:06:28 IRK Thu Apr 18 2024 by krona
+! Last configuration change at 09:09:16 IRK Thu May 23 2024 by krona
+! NVRAM config last updated at 09:09:18 IRK Thu May 23 2024 by krona
+! NVRAM config last updated at 09:09:18 IRK Thu May 23 2024 by krona
 version 15.1
 no service pad
 service tcp-keepalives-in
 service tcp-keepalives-out
 service timestamps debug datetime msec localtime year
-service timestamps log datetime msec localtime year
+service timestamps log datetime localtime
 service password-encryption
 !
 hostname IRK-HO-EDGE-R2
@@ -19,6 +19,7 @@ boot-end-marker
 !
 !
 logging discriminator FAN_mess severity drops 4 facility drops ENVMON mnemonics drops FAN_LOW_RPM 
+logging userinfo
 logging buffered discriminator FAN_mess 4096
 logging console warnings
 logging monitor discriminator FAN_mess
@@ -62,6 +63,8 @@ ip inspect name fw-outside icmp router-traffic timeout 30
 ip reflexive-list timeout 600
 login block-for 300 attempts 3 within 120
 login quiet-mode access-class 1
+login on-failure log
+login on-success log
 no ipv6 cef
 !
 multilink bundle-name authenticated
@@ -107,6 +110,8 @@ crypto pki certificate chain KRONA-C2811A-CA
 license udi pid CISCO2811 sn FCZ10157038
 archive
  log config
+  logging enable
+  notify syslog contenttype plaintext
   hidekeys
  path flash:backup/conf/
  maximum 14
@@ -905,6 +910,7 @@ no ip ftp passive
 ip ftp password 7 052F1F0D6258485B081C06
 ip ssh time-out 60
 ip ssh authentication-retries 2
+ip ssh logging events
 ip ssh version 2
 !
 track 1 ip sla 1011
@@ -982,6 +988,8 @@ track 103 list threshold percentage
  object 13
  threshold percentage down 10 up 30
 ! 
+crypto logging session
+crypto logging ezvpn
 !
 crypto isakmp policy 100
  encr aes 256
@@ -1267,6 +1275,7 @@ no ip http secure-server
 ip http timeout-policy idle 5 life 86400 requests 10000
 !
 !
+ip nat log translations syslog
 ip nat translation timeout 120
 ip nat translation tcp-timeout 1800
 ip nat translation udp-timeout 120
@@ -1497,9 +1506,10 @@ ip sla 1033
 ip sla schedule 1033 life forever start-time now
 ip sla enable reaction-alerts
 logging history size 100
-logging trap debugging
-logging origin-id hostname
+logging origin-id ip
 logging facility local1
+logging source-interface FastEthernet0/1
+logging host 10.129.135.165 transport udp port 9516
 access-list 1 permit 91.229.154.0 0.0.0.255
 access-list 1 permit 10.129.0.0 0.0.255.255
 access-list 101 permit udp any host 195.206.62.5 eq 1194
@@ -1654,6 +1664,13 @@ line con 0
  logging synchronous
 line aux 0
  access-class 1 in
+ exec-timeout 0 0
+ no activation-character
+ no editing
+ transport input telnet
+ transport output none
+ escape-character NONE
+ stopbits 1
 line vty 0 4
  session-timeout 60 
  exec-timeout 60 0
