@@ -2,7 +2,8 @@
 2 Как добавить неразмеченную область диску Linux
 #3 https://getnoc.com/ru/
 4 Убрать telnet, настроить ssh, настроить console на Cisco
-
+5 заменить циску у кредитников
+6 запустить СХД
 
 7 Неретина двухсторонняя печать из 1С
 8 OMSA vesion 11 для разных дистрибутивов
@@ -10,9 +11,8 @@
 10 Мониторинг всех и вся
 11 Инвентаризация серверной
 
+Установить две серверные OS
+Установить KMS сервер
+Настроить сервера Always On
+Устанвить DC
 
-
-
-username krona privilege 15 password 7 08134444101F544E4B58 Крона1993
-username kronadm privilege 15 secret 5 $1$Nyj3$BqVX/UTEh9NZ9p6.oQqFQ.
-username ciscoadm privilege 15 password 7 113B110F0E145A555D79

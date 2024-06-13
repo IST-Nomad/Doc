@@ -1,14 +1,17 @@
+
+Простейший tftp сервер на Ubuntu для сбора конфигураций Cisco
+
 $ sudo apt update
 $ sudo apt install tftpd-hpa
 sudo systemctl status tftpd-hpa
 sudo nano /etc/default/tftpd-hpa
 {
 # /etc/default/tftpd-hpa
-TFTP_USERNAME="zabbix"
-TFTP_DIRECTORY="/tftp"
-TFTP_ADDRESS=":69"
-TFTP_OPTIONS="--secure --create"
+TFTP_USERNAME="zabbix" #учетка из под которой будет работать сервер
+TFTP_DIRECTORY="/tftp" #директория куда сервер будет складывать файлы
+TFTP_ADDRESS=":69" #порт через который будет работать сервер
+TFTP_OPTIONS="--secure --create" # только с такими параметрами будет копировать файлы
 }
-sudo mkdir /tftp
-sudo chown zabbix:zabbix /tftp
-sudo systemctl restart tftpd-hpa
+sudo mkdir /tftp #создаем рабочую директорию
+sudo chown zabbix:zabbix /tftp #делаем владельцем рабочую учетку
+sudo systemctl restart tftpd-hpa #рестарт демона
