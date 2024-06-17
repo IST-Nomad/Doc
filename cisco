@@ -23,6 +23,14 @@ line console 0
 login local
 
 
+//Настройка времени
+clock set 10:30:00 17 june 2024
+//Настройка ntp сервера
+conf t
+ntp server 10.129.135.110
+//тайм зона
+clock timezone IRK 8
+clock timezone YAKT 9
 
 
 /загрузка конфигурации на tftp сервер
@@ -67,7 +75,7 @@ reload in 1 //перезагрузка через минуту
 show mac address-table
 
 //узнаем IP-адрес по каждому MAC-адресу
-sh ip arp | i {5254.0028.6a01}
+sh ip arp | i 88f0.77f8.5e84
 
 //Для поиска MAC используется команда sh arp | inc x.x.x.x, где х.х.х.х – ip адрес интересующего хоста
 sh arp | inc {192.168.10.100}
