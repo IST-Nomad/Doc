@@ -109,3 +109,8 @@ Modify rebuild priority
 Erase Physical Drive (controller slot 0, physical disk port 1I:box 1:bay 1)
 
 ./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 pd 1I:1:1 modify erase
+
+
+
+vim-cmd vmsvc/getallvms
+vim-cmd vmsvc/power.reboot 71

@@ -6,4 +6,4 @@ git commit -am "comment"
 git push origin main //отправить
 git pull origin main //получить
 
-git add .; git commit -m "04.06"; git push origin main
+git add .; git commit -m "18.06"; git push origin main
