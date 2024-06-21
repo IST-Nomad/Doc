@@ -114,3 +114,49 @@ Erase Physical Drive (controller slot 0, physical disk port 1I:box 1:bay 1)
 
 vim-cmd vmsvc/getallvms
 vim-cmd vmsvc/power.reboot 71
+esxcli vm process list
+esxcli vm process kill -t soft  -w 8134218
+
+
+cd /usr/sbin & esxtop 
+ls
+esxcli esxcli command list
+esxcli network ip connection list
+esxcli hardware clock (get/set)
+
+esxtop 
+
+lwsmd.2100886 
+/etc/init.d/lwsmd
+
+26401
+
+
+ps | grep vmx | grep lwsmd
+kill 3270792
+
+43193694    43193694 checker.8698347    38    0.01    0.02    0.00 3611.54
+
+Delta
+esxcli vm process kill -t soft  -w 2108427
+
+
+10.129.135.200
+192.168.135.1
+
+vcenter.tcbdomen.trustcombank.ru
+
+License 1,"HU2NA-0QLE7-08539-AT8QM-CZ85A","vSphere 7 Enterprise Plus","6 CPUs","Unlimited CPUs","Assigned","Never","--","--","--","--"
+
+License 3,"MZ0T2-84341-48ED8-1007P-93K1A","vSAN Enterprise Plus","0 CPUs","Unlimited CPUs","Unassigned","Never","--","--","--","--"
+
+License 3,"NY0W2-F6H52-M80T0-9T0GM-A2234","vCenter Server 7 Standard","1 Instances","Unlimited Instances","Assigned","Never","--","--","--","--"
+
+
+
+iqn.2004-04.com.qnap:ts-459u:iscsi.qnap24401.c532cb 10.129.135.244
+iqn.2004-04.com.qnap:ts-459u:iscsi.qnap24402.c532cb
+iqn.2004-04.com.qnap:ts-459u:iscsi.qnap24403.c532cb
+iqn.2004-04.com.qnap:ts-459u:iscsi.qnap24404.c532cb
+iqn.2004-04.com.qnap:ts-459u:iscsi.qnap24405.c532cb
+iqn.2000-01.com.synology:SG-1.default-target.9faa22a163c  10.129.135.102
