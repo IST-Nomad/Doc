@@ -2,11 +2,11 @@
 2 Как добавить неразмеченную область диску Linux
 #3 https://getnoc.com/ru/
 4 Убрать telnet, настроить ssh, настроить console на Cisco
-
+5 заменить циску у кредитников
 6 запустить СХД
 
 7 Неретина двухсторонняя печать из 1С
-
+8 OMSA vesion 11 для разных дистрибутивов
 9 AD политики, установка приложений
 10 Мониторинг всех и вся
 11 Инвентаризация серверной
@@ -17,5 +17,7 @@
 Устанвить DC
 
 Disk or Disk Bay 21 C1 P1I Bay 5
+
+https://www.dell.com/support/manuals/ru/ru/rubsdc/poweredge-rc-h330/perc10_plus_hba_clirg/missing-drives-commands?guid=guid-797dfd1a-9118-41be-a1d1-fd6b7ca6e967%E2%8C%A9=en-us
 
 mikrotik crs312-4c+8xg-rm 10g sfp+
