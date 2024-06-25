@@ -115,7 +115,7 @@ Erase Physical Drive (controller slot 0, physical disk port 1I:box 1:bay 1)
 vim-cmd vmsvc/getallvms
 vim-cmd vmsvc/power.reboot 71
 esxcli vm process list
-esxcli vm process kill -t soft  -w 2108369
+esxcli vm process kill -t hard  -w 2183091
 
 
 cd /usr/sbin & esxtop 
