@@ -1,0 +1,90 @@
+#FacturaGate_(win10)(175)_23.06_restored2
+   World ID: 2108369
+   Process ID: 0
+   VMX Cartel ID: 2108368
+   UUID: 42 3b c4 8c 44 4e 1a 11-ad bb aa 71 84 10 18 4c
+   Display Name: FacturaGate_(win10)(175)_23.06_restored2
+   Config File: /vmfs/volumes/640165d2-7d364898-bc4f-20677c0ea360/FacturaGate_(win10)(175)_23.06_restored2/FacturaGate_(win10)(175)_23.06_restored2.vmx
+
+#DELTA_signatura_crypto(78)
+   World ID: 2108441
+   Process ID: 0
+   VMX Cartel ID: 2108440
+   UUID: 42 15 0a b7 0a 38 c4 ae-84 83 ef ae c0 de 88 be
+   Display Name: DELTA_signatura_crypto(78)
+   Config File: /vmfs/volumes/640169a8-bcbc2de0-3689-20677c0ea360/DELTA_signatura_crypto/DELTA_signatura_crypto.vmx
+
+RSConnect(73)_W10
+   World ID: 2108700
+   Process ID: 0
+   VMX Cartel ID: 2108699
+   UUID: 42 15 cd 40 26 df 4f 8e-07 58 f9 3a c4 c6 e6 9b
+   Display Name: RSConnect(73)_W10
+   Config File: /vmfs/volumes/6401661a-7612f8b8-aa96-20677c0ea360/RSConnect_clone/RSConnect_clone.vmx
+
+#Komita(77)
+   World ID: 2108860
+   Process ID: 0
+   VMX Cartel ID: 2108859
+   UUID: 42 2d 24 24 44 fe e4 c1-7f f8 4c 91 e1 4a 6c 0b
+   Display Name: Komita(77)
+   Config File: /vmfs/volumes/640165d2-7d364898-bc4f-20677c0ea360/Komita(77)/Komita(77).vmx
+
+#VneshPortCB(60)
+   World ID: 4264744
+   Process ID: 0
+   VMX Cartel ID: 4264743
+   UUID: 42 1a e8 94 4c 05 8b e0-01 37 e8 ff 19 ba d2 42
+   Display Name: VneshPortCB(60)
+   Config File: /vmfs/volumes/640165fb-03fa9458-f5c1-20677c0ea360/VneshPortCB(60)/VneshPortCB(60).vmx
+
+WSUS_dev(212)
+   World ID: 2183091
+   Process ID: 0
+   VMX Cartel ID: 2183090
+   UUID: 56 4d ea 7c 2c b8 5f 2e-79 8f dd 42 3e 97 fb db
+   Display Name: WSUS_dev(212)
+   Config File: /vmfs/volumes/640169a8-bcbc2de0-3689-20677c0ea360/WSUS_dev/WSUS_dev.vmx
+
+NewVeda(215)
+   World ID: 2299953
+   Process ID: 0
+   VMX Cartel ID: 2299952
+   UUID: 42 3b 62 69 bc f0 d5 96-7b e9 3e 00 b4 9d 27 1f
+   Display Name: NewVeda(215)
+   Config File: /vmfs/volumes/640165d2-7d364898-bc4f-20677c0ea360/NewVeda(215)/NewVeda(215).vmx
+
+ORACLE_TST(122)
+   World ID: 3393486
+   Process ID: 0
+   VMX Cartel ID: 3393485
+   UUID: 42 15 b8 2c a5 c7 8d 9d-aa e7 c6 6f fa 1b 90 c3
+   Display Name: ORACLE_TST(122)
+   Config File: /vmfs/volumes/5ebcecda-745f0228-75f7-20677c0ea360/ORACLE_TST/ORACLE_TST.vmx
+
+KronaDataWin8 (205)
+   World ID: 2822400
+   Process ID: 0
+   VMX Cartel ID: 2822399
+   UUID: 56 4d 23 77 6d e0 b0 fb-3b 81 ae 6f 5a 78 64 c7
+   Display Name: KronaDataWin8 (205)
+   Config File: /vmfs/volumes/640165d2-7d364898-bc4f-20677c0ea360/KronaDataWin8 (205)/KronaDataWin8 (205).vmx
+
+
+
+[VNX5100_LUN0] FacturaGate_(win10)(175)_23.06_restored2/
+vimbackup [VNX5100_LUN0] Komita(77)/
+[VNX5100_LUN0] KronaDataWin8 (205)/
+[VNX5100_LUN0] MDAEMON(250)/
+#[VNX5100_LUN0] Multifactor/
+[VNX5100_LUN0] NewVeda(215)/
+#[VNX5100_LUN1] 10_strike/
+[VNX5100_LUN1] Contact_Win10(235)/
+[VNX5100_LUN1] Gateway_Smev3_finist/
+[VNX5100_LUN1] MS_SQL_2022(120)/
+[VNX5100_LUN1] RS-BANK55 (201)_r20170329/
+[VNX5100_LUN1] StaffCopDLP(230)/
+#[VNX5100_LUN1] VneshPortCB(60)/
+[VNX5100_LUN2] Fincert (182)/
+[VNX5100_LUN2] GatewayCrypto_finist/
+[VNX5100_LUN2] vCenter/
