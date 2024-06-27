@@ -109,6 +109,7 @@ Modify rebuild priority
 Erase Physical Drive (controller slot 0, physical disk port 1I:box 1:bay 1)
 
 ./opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 pd 1I:1:1 modify erase
+<<<<<<< HEAD
 
 
 
@@ -168,3 +169,5 @@ iqn.2004-04.com.qnap:ts-459u:iscsi.qnap24404.c532cb
 iqn.2004-04.com.qnap:ts-459u:iscsi.qnap24405.c532cb
 iqn.2000-01.com.synology:SG-1.default-target.9faa22a163c  10.129.135.103
 iqn.2000-01.com.synology:SG-1.Target-2.9faa22a163c 10.129.135.103
+=======
+>>>>>>> b4d7509 (27.06)

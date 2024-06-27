@@ -1,32 +1,36 @@
 1 how to change foreign disk to online dell server
 2 Как добавить неразмеченную область диску Linux
-#3 https://getnoc.com/ru/
+3 Настроить роутер WL-2 
 4 Убрать telnet, настроить ssh, настроить console на Cisco
-5 заменить циску у кредитников
-6 запустить СХД
-
+!5 Запустить ESXi на всех хостах
+!6 Настроить vMotion
 7 Неретина двухсторонняя печать из 1С
-8 OMSA vesion 11 для разных дистрибутивов
+8 Подготовка к запуску Finist
 9 AD политики, установка приложений
 10 Мониторинг всех и вся
 11 Инвентаризация серверной
-
+12 oracle linux install
+13 VMware EVC
 Установить две серверные OS
 Установить KMS сервер
 Настроить сервера Always On
 Устанвить DC
 
-Disk or Disk Bay 21 C1 P1I Bay 5
 
 https://www.dell.com/support/manuals/ru/ru/rubsdc/poweredge-rc-h330/perc10_plus_hba_clirg/missing-drives-commands?guid=guid-797dfd1a-9118-41be-a1d1-fd6b7ca6e967%E2%8C%A9=en-us
 
+
 mikrotik crs312-4c+8xg-rm 10g sfp+
-root–calvin
+Idrac root–calvin
 
-	[Datastore220] ORACLE_TST/ORACLE_TST.vmdk
-    [VNX5100_LUN0] KronaDataWin8 (205)/KronaDataWin8 (205).vmdk	
-    [VNX5100_LUN0] NewVeda(215)/NewVeda(215).vmdk
+   
+
+Подсети выбранного интерфейса:
+10.129.129.16/28
+10.129.129.17-10.129.129.29
+https://4pda.to/forum/index.php?showtopic=905966&st=1060
+https://4pda.to/forum/index.php?showtopic=905966&view=findpost&p=124211324
+(Updated) HPE-Custom-AddOn_703.0.0.11.2.0-9 (VMware, Inc.)
 
 
-    VMware EVC
-    oracle linux install
+https://getnoc.com/ru/
