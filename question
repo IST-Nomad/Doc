@@ -21,3 +21,12 @@ Disk or Disk Bay 21 C1 P1I Bay 5
 https://www.dell.com/support/manuals/ru/ru/rubsdc/poweredge-rc-h330/perc10_plus_hba_clirg/missing-drives-commands?guid=guid-797dfd1a-9118-41be-a1d1-fd6b7ca6e967%E2%8C%A9=en-us
 
 mikrotik crs312-4c+8xg-rm 10g sfp+
+root–calvin
+
+	[Datastore220] ORACLE_TST/ORACLE_TST.vmdk
+    [VNX5100_LUN0] KronaDataWin8 (205)/KronaDataWin8 (205).vmdk	
+    [VNX5100_LUN0] NewVeda(215)/NewVeda(215).vmdk
+
+
+    VMware EVC
+    oracle linux install
