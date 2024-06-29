@@ -113,6 +113,7 @@ Erase Physical Drive (controller slot 0, physical disk port 1I:box 1:bay 1)
 
 
 
+<<<<<<< HEAD
 vim-cmd vmsvc/getallvms
 vim-cmd vmsvc/power.reboot 71
 esxcli vm process list
@@ -171,3 +172,6 @@ iqn.2000-01.com.synology:SG-1.default-target.9faa22a163c  10.129.135.103
 iqn.2000-01.com.synology:SG-1.Target-2.9faa22a163c 10.129.135.103
 =======
 >>>>>>> b4d7509 (27.06)
+=======
+
+>>>>>>> a55348e (29.06)
