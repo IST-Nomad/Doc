@@ -12,19 +12,15 @@
 12 oracle linux install
 #13 VMware EVC
 14 Oracle Database JDBC driver
+!15 pvst на cisco
+16 настройка mikrotik crs312-4c+8xg-rm 10g sfp+
 Установить две серверные OS
 Установить KMS сервер
 Настроить сервера Always On
 Устанвить DC
 
 
-https://www.dell.com/support/manuals/ru/ru/rubsdc/poweredge-rc-h330/perc10_plus_hba_clirg/missing-drives-commands?guid=guid-797dfd1a-9118-41be-a1d1-fd6b7ca6e967%E2%8C%A9=en-us
-
-
-mikrotik crs312-4c+8xg-rm 10g sfp+
 Idrac root–calvin
-
-   
 
 Подсети выбранного интерфейса:
 10.129.129.16/28
