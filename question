@@ -1,6 +1,10 @@
 1 how to change foreign disk to online dell server
 2 Как добавить неразмеченную область диску Linux
+<<<<<<< HEAD
 3 Настроить роутер WL-2 
+=======
+#3 Настроить роутер WL-2 
+>>>>>>> main/work
 4 Убрать telnet, настроить ssh, настроить console на Cisco
 !5 Запустить ESXi на всех хостах
 #6 Настроить vMotion
@@ -11,9 +15,17 @@
 11 Инвентаризация серверной
 12 oracle linux install
 #13 VMware EVC
+<<<<<<< HEAD
 14 Oracle Database JDBC driver
 !15 pvst на cisco
 16 настройка mikrotik crs312-4c+8xg-rm 10g sfp+
+=======
+#14 Oracle Database JDBC driver
+!15 pvst на cisco
+#16 изменить телефонный справочник
+16 настройка mikrotik crs312-4c+8xg-rm 10g sfp+
+https://mikrotik.com/download
+>>>>>>> main/work
 ftp server 10.129.135.205
 Установить две серверные OS
 Установить KMS сервер
@@ -23,6 +35,7 @@ ftp server 10.129.135.205
 
 Idrac root–calvin
 
+<<<<<<< HEAD
 Подсети выбранного интерфейса:
 10.129.129.16/28
 10.129.129.17-10.129.129.29
@@ -34,3 +47,6 @@ https://4pda.to/forum/index.php?showtopic=905966&view=findpost&p=124211324
 https://getnoc.com/ru/
 
 https://sysadmins.online/threads/8715/
+=======
+https://getnoc.com/ru/
+>>>>>>> main/work
