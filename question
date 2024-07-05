@@ -1,27 +1,27 @@
-1 how to change foreign disk to online dell server
-2 Как добавить неразмеченную область диску Linux
+1 перевод читы в иркутский домен
+2 Как добавить неразмеченную область диску Linux (centos 5)
 #3 Настроить роутер WL-2 
 4 Убрать telnet, настроить ssh, настроить console на Cisco
-!5 Запустить ESXi на всех хостах
+!!5 Запустить ESXi на всех хостах
 #6 Настроить vMotion
 7 Неретина двухсторонняя печать из 1С
 8 Подготовка к запуску Finist
 9 AD политики, установка приложений
-10 Мониторинг всех и вся
+10 Мониторинг, zabbix, свои темплейты
 11 Инвентаризация серверной
 12 oracle linux install
 #13 VMware EVC
 #14 Oracle Database JDBC driver
-!15 pvst на cisco
+!!15 pvst на cisco, vpn
 #16 изменить телефонный справочник
-16 настройка mikrotik crs312-4c+8xg-rm 10g sfp+
-https://mikrotik.com/download
+!16 настройка mikrotik crs312-4c+8xg-rm 10g sfp+ https://mikrotik.com/download
 17 ftp server 10.129.135.205 на диск T 
 18 Oracle Developer Tools for VS Code (SQL and PLSQL)
-Установить две серверные OS
-Установить KMS сервер
-Настроить сервера Always On
-Устанвить DC
+19 Установить cisco packet tracer и пролить конфу
+21 Установить две серверные OS
+#22 Установить KMS сервер
+23 Настроить сервера Always On
+24 Устанвить DC
 
 
 Idrac root–calvin
