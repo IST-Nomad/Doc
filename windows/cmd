@@ -1,0 +1,30 @@
+//включить RDP
+#reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 0 /f 
+//отключить брандмауэр 
+netsh advfirewall set allprofiles state off
+//для получения системной информации
+systeminfo 
+//список процессов
+tasklist
+//Убить процесс
+taskkill /t /im firefox.exe
+
+//Тест скорости 
+cd C:/Distr/iperf3.1.1_32
+//на сервере из папки где исполняемый файл
+iperf3 -s
+на клиенте, где 10.129.135.200 адрес сервера
+iperf3 -c 10.129.135.200
+cd C:/Distr/iperf3.1.1_32
+
+//Удалить файл
+del /F /Q /A "Путь к файлу"
+del /s /q C:\TEMP\*.*
+
+//Копировать файлы
+copy /y L:\Soft\TERM_TST C:\TEMP
+
+
+
+
+
