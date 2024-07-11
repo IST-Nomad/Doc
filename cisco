@@ -1,60 +1,61 @@
 
 //Обнулить Cisco 
-подключиться через telnet и на старте загрузки нажать ctrl + Break
-должен выпать в rommon режим.
-команда "confreg 0x2142" запуск до конфигурации, "reset" перезагрузка
-заходим в "enable" и вводим "copy running-config startup-config"
-устройство обнулено
+//подключиться через telnet и на старте загрузки нажать ctrl + Break должен выпать в rommon режим.
+//запуск до конфигурации
+#confreg 0x2142 
+//перезагрузка
+#reset 
+#enable
+#copy running-config startup-config
+//устройство обнулено
 
 //Первичная настройка
-conf t
+#conf t
 //Пароль на вход
-enable password {PASSWORD}
+#enable password {PASSWORD}
 //Скрываем пароль в конфиге
-service password-encryption
+#service password-encryption
 //задаем secret пароль (приоритет выше чем обычный)
-enable secret {PASSWORD}
+#enable secret {PASSWORD}
 //создаем пользователя {USERNAME} уровень привелегий 15 (самый высокий) пароль {PASSWORD}
-username {USERNAME} privilege 15 password {PASSWORD}
+#username {USERNAME} privilege 15 password {PASSWORD}
 
 //настройка терминальных линий (0 - console)
-line console 0
+#line console 0
 // использовать локальную базу учетных записей
-login local
-
+#login local
 
 //Настройка времени
-clock set 10:30:00 17 june 2024
+#clock set 10:30:00 17 june 2024
 //Настройка ntp сервера
-conf t
-ntp server 10.129.135.110
+#conf t
+#ntp server 10.129.135.110
 //тайм зона
-clock timezone IRK 8
-clock timezone YAKT 9
+#clock timezone IRK 8
+#clock timezone YAKT 9
 
-
-/загрузка конфигурации на tftp сервер
-copy startup-config tftp:
+//загрузка конфигурации на tftp сервер
+#copy startup-config tftp:
 {10.129.135.110}
 
-/настройка snmp на cisco
-conf t
-snmp-server community public ro
-snmp-server contact Batr <poplavkovsemen@gmail.com>
+//настройка snmp на cisco
+#conf t
+#snmp-server community public ro
+#snmp-server contact Batr <poplavkovsemen@gmail.com>
 
-/настройка порта для скачивания/загрузки ПО/конфигурации cisco
-conf t
-ip tftp source-interface {fastEthernet0/1}
-ip tftp min-timeout 10
+//настройка порта для скачивания/загрузки ПО/конфигурации cisco
+#conf t
+#ip tftp source-interface {fastEthernet0/1}
+#ip tftp min-timeout 10
 
-conf t
-archive
-path tftp://10.129.135.110/ATC/$h
-# путь до tftp сервера, кладет в папку ATC (папка должна быть изначально создана) имя файла начинается с hostname и заканчивается временем создания
-write-memory
-# автоматическое архивирование при сохраниении конфигурации
+#conf t
+#archive
+//путь до tftp сервера, кладет в папку ATC (папка должна быть изначально создана) имя файла начинается с hostname ($h) и заканчивается временем создания
+#path tftp://10.129.135.110/ATC/$h 
+//автоматическое архивирование при сохраниении конфигурации
+#write-memory
 
-/настройка в режиме rommon для загрузки ПО c tftp сервера, нет истории команд и автозаполнения, лучше использовать терминальный клиент для копирования команд
+//настройка в режиме rommon для загрузки ПО c tftp сервера, нет истории команд и автозаполнения, лучше использовать терминальный клиент для копирования команд
 IP_ADDRESS=10.129.139.249
 IP_SUBNET_MASK=255.255.255.0
 DEFAULT_GATEWAY=10.129.139.254
@@ -65,55 +66,56 @@ TFTP_FILE=c890-universalk9-mz.154-3.M6a.bin
 sync
 tftpdnld -r
 
-/команды rommon
+//команды rommon
 dir flash:
 boot flash:{c2600-io3-mz.121-6.5.bin}
 
-reload in 1 //перезагрузка через минуту
+#reload in 1 //перезагрузка через минуту
 
 //показывает список всех МАС адресов активных устройств, которые подключены к коммутатору
-show mac address-table
+#show mac address-table
 
 //узнаем IP-адрес по каждому MAC-адресу
-sh ip arp | i 88f0.77f8.5e84
+#sh ip arp | i 88f0.77f8.5e84
 
 //Для поиска MAC используется команда sh arp | inc x.x.x.x, где х.х.х.х – ip адрес интересующего хоста
-sh arp | inc {192.168.10.100}
+#sh arp | inc {192.168.10.100}
 
 //фильтр по нужному МАС адресу, причем достаточно последних 4х символов
-sh mac address-table | inc {74f2}
+#sh mac address-table | inc {74f2}
 
-//Если в сети офиса их несколько, то определить имя и адрес управления нужного нам соседнего коммутатора помогут команды 'sh cdp neighbors', которая покажется имена и связанные порты всех коммутаторов Cisco, подключенных к текущему и 'sh cdp neighbors detail', в выводе которой дополнительно указаны ip адреса для управления соседними коммутаторами
+//Если в сети офиса их несколько, то определить имя и адрес управления нужного нам соседнего коммутатора помогут команды 
+#sh cdp neighbors - покажется имена и связанные порты всех коммутаторов Cisco, подключенных к текущему и 
+#sh cdp neighbors detail - в выводе которой дополнительно указаны ip адреса для управления соседними коммутаторами
 
 
 //Подключение AUX > console
 //Настройка управляющего роутера
-enable
-conf t
-line aux 0
-speed 9600
-databits 8
-parity none
-stopbits 1
-exec-timeout 0 0
-no activation-character
-no editing
-transport input telnet
-transport output none
-escape-character NONE
+#enable
+#conf t
+#line aux 0
+#speed 9600
+#databits 8
+#parity none
+#stopbits 1
+#exec-timeout 0 0
+#no activation-character
+#no editing
+#transport input telnet
+#transport output none
 
 //Подключение 
 //Узнать номер порта AUX
-show line
+#show line
 //Если AUX висит на линии 1, тогда порт подключения: 2000 + 1 = 2001
-telnet 10.5.0.1 2001
+#telnet 10.5.0.1 2001
 //где 10.5.0.1 - адрес внутреннего интерфейса роутера с которого идет подключение (управляющего)
 //разорвать подключение
-ctrl + shift + 6 и сразу нажимаем x
+#ctrl + shift + 6 и сразу нажимаем x
 //смотрим активные подключения 
-show session
+#show session
 //закрываем нужную
-disconnect 1
+#disconnect 1
 
 // после удачной проверки можно сохранить подключение telnet 10.5.0.1 2001 | Это соедиеннеие не нужно разрывать, просто закрыть терминал
 
@@ -122,46 +124,8 @@ copy (откуда) xmodem: (куда) flash:
 //спросит имя файла, соответственно указать
 как пойдет ожидание на прием (в зависимости от программы) включить передачу через xmodem
 
-
- description Inside-DMZ
- encapsulation dot1Q 100
- ip address 10.129.139.240 255.255.255.0 secondary
- ip address 10.129.139.241 255.255.255.0
- ip nat inside
- no ip virtual-reassembly in
- ip tcp adjust-mss 1360
-
-
-!
-line con 0
- logging synchronous
-line aux 0
- access-class 1 in
- exec-timeout 0 0
- no activation-character
- no editing
- transport input telnet
- transport output none
- escape-character NONE
- stopbits 1
-line vty 0 4
- session-timeout 60 
- exec-timeout 60 0
- privilege level 15
- logging synchronous
- exec prompt timestamp
- transport input ssh
- transport output telnet ssh
-line vty 5 15
- session-timeout 60 
- exec-timeout 60 0
- privilege level 15
- transport input ssh
- transport output ssh
-!
-
-
-
+//Настройка интерфейса роутера
+На маршрутизаторе настраивается логический интерфейс [int vlan 1]
 Router>enable
 Router#conf t
 Enter configuration commands, one per line.  End with CNTL/Z.
@@ -177,8 +141,7 @@ Router(config)#^Z
 Router#
 
 
-Посмотреть изменения в конфигурации 
-show archive config differences
-
-Показывает разницу между стартовой и текущей конфигурацией и кто и когда сделал изменение
+//Посмотреть изменения в конфигурации 
+#show archive config differences
+//Показывает разницу между стартовой и текущей конфигурацией и кто и когда сделал изменение
 

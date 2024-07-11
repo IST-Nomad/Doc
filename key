@@ -5,14 +5,16 @@ DISM.exe /Online /Get-TargetEditions
 DISM /online /Set-Edition:ServerStandard /ProductKey:N69G4-B89J2-4G8F4-WWYCC-J464C /AcceptEula
 
 ## How To Activate 
-slmgr /ipk XXXXX-XXXXX-XXXXX-XXXXX-XXXXX
-slmgr /skms [server]:[port]
+slmgr /ipk W269N-WFGWX-YVC9B-4J6C9-T83GX
+slmgr /skms 10.129.135.110
 slmgr /ato
-slmgr /dlv
+
+cd C:\Program Files\Microsoft Office\Office15
+cscript ospp.vbs /sethst:10.129.135.110
 
 ## Licence Key
 Windows Server 2019 Datacenter      WMDGN-G9PQG-XVVXX-R3X43-63DFG
-#Windows Server 2019 Standard        N69G4-B89J2-4G8F4-WWYCC-J464C
+Windows Server 2019 Standard        N69G4-B89J2-4G8F4-WWYCC-J464C
 Windows Server 2019 Essentials      WVDHN-86M7X-466P6-VHXV7-YY726
 
 Windows Server 2016 Datacenter 	    CB7KF-BWN84-R7R2Y-793K2-8XDDG
@@ -32,41 +34,10 @@ Windows 10 Education                2WH4N-8QGBV-H22JP-CT43Q-MDWWJ
 Windows 10 Enterprise LTSC 2019     M7XTQ-FN8P6-TTKYV-9D4CC-J462D
 Windows 10 Enterprise N LTSC 2019   92NFX-8DJQP-P6BBQ-THF9C-7CG2H
 
-## Online KMS Server Host Address
-* kms8.msguides.com
-* kms.digiboy.ir
-* hq1.chinancce.com
-* 54.223.212.31
-* kms.cnlic.com
-* kms.chinancce.com
-* kms.ddns.net
-* franklv.ddns.net
-* k.zpale.com
-* m.zpale.com
-* mvg.zpale.com
-* kms.shuax.com
-* kensol263.imwork.net:1688
-* xykz.f3322.org
-* kms789.com
-* dimanyakms.sytes.net:1688
-* kms.03k.org:1688
-
-
 Windows Server 2022 Datacenter | WX4NM-KYWYW-QJJR4-XV3QB-6VM33
 Windows Server 2022 DatacenterAzure Edition | NTBV8-9K7Q8-V27C6-M2BTV-KHMXV
 Windows Server 2022 Standard | VDYBN-27WPP-V4HQT-9VMD4-VMK7H
 
-Лицензия для Windows и офиса.⁠⁠
-Проворные китайцы подняли kms сервер(их много) на весь интернет, который кушает любые ключи ;)
-
-Активируем Windows:
-1. Открываем командную строку от имени администратора
-2. Вводим поочередно:
-slmgr.vbs -ipk Ключ от винды, ниже список или из интернета
-slmgr /skms Сервер, ниже список
-slmgr /ato
-
-WINDOWS KEY
 Windows 10 Core TX9XD-98N7V-6WMQ6-BX7FG-H8Q99
 Windows 10 Enterprise G YYVX9-NTFWV-6MDM3-9PT4T-4M68B
 Windows 10 Enterprise GN 44RPN-FTY23-9VTTB-MP9BX-T84FV
@@ -178,22 +149,3 @@ Windows Vista Business N HMBQG-8H2RH-C77VX-27R82-VMQBT
 Windows Vista Enterprise VKK3X-68KWM-X2YGT-QR4M6-4BWMV
 Windows Vista Enterprise N VTC42-BM838-43QHV-84HX6-XJXKV
 
-SERVER'S
-kms.srv.crsoo.com
-kms.digiboy.ir
-kms.03k.org
-hq1.chinancce.com
-kms.shuax.com
-kms.lotro.cc
-kms789.com
-
-PROFIT! Винда активная и обновляется!
-
-
-Активируем Office:
-1. Открываем командную строку от имени администратора
-2. Переходим в каталог, в котором установлен Office
-Пример для 16 офиса: cd C:\Program Files\Microsoft Office\Office16
-3. Вводим поочередно:
-cscript ospp.vbs /sethst:kms.03k.org
-cscript ospp.vbs /act

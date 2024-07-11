@@ -1,7 +1,7 @@
 1 перевод читы в иркутский домен
 2 Как добавить неразмеченную область диску Linux (centos 5)
 #3 Настроить роутер WL-2 
-4 Убрать telnet, настроить ssh, настроить console на Cisco
+#4 Убрать telnet, настроить ssh, настроить console на Cisco
 !!5 Запустить ESXi на всех хостах
 #6 Настроить vMotion
 7 Неретина двухсторонняя печать из 1С
@@ -17,13 +17,13 @@
 !17 настройка mikrotik crs312-4c+8xg-rm
 18 ftp server 10.129.135.205 на диск T 
 19 Oracle Developer Tools for VS Code (SQL and PLSQL)
-20 Установить cisco packet tracer и пролить конфу
+!!!20 Установить cisco packet tracer и пролить конфу (смоделировать сеть банка)
 21 Установить две серверные OS
 #22 Установить KMS сервер
 23 Настроить сервера Always On
 24 Устанвить DC на ESXi
 25 Alternative Rock Of The 90s 2000s скачать torrent
-26
+26 Заменить rasbery на nettop (курсы валют)
 27
 28
 29
