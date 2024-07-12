@@ -1,10 +1,9 @@
 @echo off
-set p=C:\TERM_TST
-if not exist %p% goto copy
-echo Directory exist!
+set d=%SystemDrive%\TERM
+if not exist %d% goto copy_1
 exit
-:copy
-mkdir C:\TERM_TST
-copy L:\Soft\TERM_TST C:\TERM_TST /y /n
-echo  Done!
+:copy_1
+mkdir %SystemDrive%\TERM
+Xcopy \\10.129.135.200\netlogon\TERMS\TERM %SystemDrive%\TERM /E /Q /Y /R /H /Z
+pause
 exit
