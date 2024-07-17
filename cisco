@@ -145,9 +145,15 @@ Router#
 //Посмотреть изменения в конфигурации 
 #show archive config differences
 //Показывает разницу между стартовой и текущей конфигурацией и кто и когда сделал изменение
-=======
 Посмотреть изменения в конфигурации 
 show archive config differences
 
->>>>>>> Stashed changes
 
+
+show crypto isakmp policy
+show crypto map
+show crypto isakmp sa
+show crypto isakmp sa detail
+show crypto ipsec sa
+show crypto engine connections active
+sh crypto session
