@@ -17,7 +17,7 @@
 !17 настройка mikrotik crs312-4c+8xg-rm
 18 ftp server 10.129.135.205 на диск T 
 19 Oracle Developer Tools for VS Code (SQL and PLSQL)
-!!!20 Установить cisco packet tracer и пролить конфу (смоделировать сеть банка)
+!!!20 Установить cisco packet tracer и пролить конфу (смоделировать сеть банка) GNS3
 21 Установить две серверные OS
 #22 Установить KMS сервер
 23 Настроить сервера Always On
