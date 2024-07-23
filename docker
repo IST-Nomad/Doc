@@ -1,3 +1,4 @@
+
 // install 
 curl https://get.docker.com -o install.sh && sh install.sh
 //добавить группу
@@ -24,6 +25,7 @@ sudo nano /etc/docker/daemon.json
     "https://dockerhub.timeweb.cloud"
   ]
 }
+
 
 // docker-compose
 #sudo curl -L "https://github.com/docker/compose/releases/download/v2.15.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
