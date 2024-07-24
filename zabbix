@@ -30,3 +30,5 @@ yum install zabbix-agent2 zabbix-agent2-plugin-*
 sudo nano /etc/zabbix/zabbix_agent2.conf
 service zabbix-agent2 restart
 chkconfig --level 35 zabbix-agent2 on
+
+https://github.com/vanohaker/zabbix-compose
