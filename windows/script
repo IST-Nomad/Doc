@@ -1,0 +1,10 @@
+PowerShell скрипт смены пароля в AD у всех пользователей. Меняет всем пароль в AD и ставит галку о смене при первом входе.
+
+Import-Module ActiveDirectory
+
+$users = Get-ADUser -Filter * -SearchBase "OU=Пользователи,DC=flammlin,DC=local"
+foreach ($user in $users)
+{
+$password = ConvertTo-SecureString -String "Qwerty123" -AsPlainText –Force
+Set-ADAccountPassword -Identity $user -NewPassword $password -Reset -PassThru | Set-ADuser -ChangePasswordAtLogon $True
+}

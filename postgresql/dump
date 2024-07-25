@@ -1,0 +1,21 @@
+#!/bin/bash
+# Создание backup файла для SQL базы данных для сайта 
+#
+# Потом добавить этот файл в cron для root пользователя, вот эти 2 строки: 
+# # в полночь 00:01 создается backup файл для SQL базы данных для сайта
+# 1 0 * * * /var/lib/postgresql/backup/backupSQL.sh
+#
+
+cd /var/lib/postgresql/backup # в этой папке лежит этот скрипт
+
+dateBackup="`eval date +%Y.%m.%d_%H-%M`" # Дата создания бэкапа будет в названии файла
+sudo -u postgres pg_dump name_DB_need_change | gzip -9 > backup_DB_$dateBackup.sql.gz # Делаем бэкап для базы данных, имя базы данных поменять
+
+chmod -R g-rwX,o-rwX backup_DB_$dateBackup.sql.gz
+
+# папка и пользователь должны быть созданы заранее
+mv backup_DB_$dateBackup.sql.gz  /home/sftp/sftp-Share-File/backup_DB_$dateBackup.sql.gz
+
+chown -R sftp:users    /home/sftp/sftp-Share-File/backup_DB_$dateBackup.sql.gz
+chmod -R u+r,g+r,o-rwX /home/sftp/sftp-Share-File/backup_DB_$dateBackup.sql.gz
+

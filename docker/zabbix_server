@@ -1,39 +1,5 @@
 
-// install 
-curl https://get.docker.com -o install.sh && sh install.sh
-//добавить группу
-sudo groupadd docker
-//добавить текущего юзера к группе
-sudo usermod -aG docker $USER
-//проверить работает ли демон
-sudo systemctl status docker.service
-//перезапуск групп
-newgrp docker
-//тестовый контейнер
-docker run hello-world
-
-
-//KMS Server
-docker run -d -p 1688:1688 --restart=always --name vlmcsd mikolatero/vlmcsd
-
-sudo nano /etc/docker/daemon.json
-
-{
-  "log-driver": "local",
-  "registry-mirrors": [ 
-    "https://mirror.gcr.io/", 
-    "https://dockerhub.timeweb.cloud"
-  ]
-}
-
-
-// docker-compose
-#sudo curl -L "https://github.com/docker/compose/releases/download/v2.15.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-#sudo chmod +x /usr/local/bin/docker-compose
-#docker-compose --version
-
-#nano docker-compose-server-amd64.yaml
-
+#sudo nano docker-compose-server-amd64.yaml
 #
 version: '3.5'
 services:
@@ -140,3 +106,4 @@ services:
 #
 // старт
 #sudo docker-compose -f docker-compose-server-amd64.yaml up -d
+

@@ -1,0 +1,3 @@
+adduser sammy
+usermod -aG sudo sammy
+su - sammy

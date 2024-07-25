@@ -1,0 +1,5 @@
+
+//KMS Server
+docker run -d -p 1688:1688 --restart=always --name vlmcsd mikolatero/vlmcsd
+
+sudo nano /etc/docker/daemon.json

@@ -1,0 +1,21 @@
+
+// install 
+curl https://get.docker.com -o install.sh && sh install.sh
+//добавить группу
+sudo groupadd docker
+//добавить текущего юзера к группе
+sudo usermod -aG docker $USER
+//проверить работает ли демон
+sudo systemctl status docker.service
+//перезапуск групп
+newgrp docker
+//тестовый контейнер
+docker run hello-world
+
+// docker-compose
+#sudo curl -L "https://github.com/docker/compose/releases/download/v2.15.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+#sudo chmod +x /usr/local/bin/docker-compose
+#docker-compose --version
+
+#nano docker-compose-server-amd64.yaml
+

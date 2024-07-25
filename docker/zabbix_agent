@@ -1,0 +1,8 @@
+docker run \
+ --name=zabbix-agent-xxl \
+ -h $(hostname) \
+ -p 10050:10050 \
+ -v /:/rootfs \
+ -v /var/run:/var/run \
+ -e "ZA_Server=10.129.135.110" \
+ -d monitoringartist/zabbix-agent-xxl-limited:latest

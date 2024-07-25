@@ -24,7 +24,23 @@ del /s /q C:\TEMP\*.*
 //Копировать файлы
 copy /y L:\Soft\TERM_TST C:\TEMP
 
+//cmd от имени системы
+Скачать софт  https://learn.microsoft.com/en-us/sysinternals/downloads/psexec
+из каталога где она находится 
+.\psexec64 -i -s cmd
 
 
+//Дать права на все файлы в папке
+icacls папкафайл /setowner Пользователь параметры
+icacls C:\RSBank60\KRONA\MailBox\Amur\Выписки_amur\* /setowner TCBDOMEN/admin /C /L /Q
 
-
+// Изменение разрешений для файла (папки), используя командную строку.
+icacls папкафайл /grant:r Пользователь:разрешение
+icacls C:\New\* /grant:r TCBusers:F
+Разрешения:
+F - полный доступ
+M - доступ на изменение
+RX - доступ на чтение и выполнение
+R - доступ только на чтение
+W - доступ только на запись
+D - доступ на удаление
