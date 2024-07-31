@@ -1,4 +1,17 @@
 //узнать время, часовой пояс, дату
-date
+#date
 //Сменить часовой пояс
-sudo timedatectl set-timezone 'Asia/Irkutsk'
+#sudo timedatectl set-timezone 'Asia/Irkutsk'
+
+
+//список служб systemctl
+#sudo systemctl list-units --type service
+//чтобы увидеть загруженные, но неактивные юниты, передайте опцию –all:
+#sudo systemctl list-units --type service --all
+//Если вы хотите увидеть все установленные файлы модулей, а не только загруженные, используйте:
+#sudo systemctl list-unit-files
+//Ччтобы определить текущий статус службы nginx, вы должны запустить:
+#sudo systemctl status nginx.service
+//чтобы убедиться, что служба nginx запущена, вы должны запустить:
+#sudo systemctl is-active nginx.service
+

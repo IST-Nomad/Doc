@@ -1,0 +1,8 @@
+Чтобы установить Webmin через менеджер пакетов apt, вы добавляете ключ GPG его репозитория с помощью комбинированной команды # wget и apt-key n следующим образом:
+# wget -q http://www.webmin.com/jcameron-key.asc -O- | sudo apt-key add -
+Как только вы это сделаете, вы можете просто ввести следующую команду, чтобы добавить хранилище в ваш каталог sources.listd: # echo "deb https://download.webmin.com/download/repository sarge contrib" | sudo tee /etc/apt/sources.list.d/webmin.list
+Наконец, вам просто нужно ввести следующую команду, чтобы продолжить установку.
+#sudo apt update && sudo apt install webmin
+Теперь, когда вы успешно установили Webmin в дистрибутиве на основе Ubuntu.
+Чтобы получить доступ к Webmin в удаленной системе (где вы уже установили его), вы можете использовать IP-адрес удаленной системы:
+https://your_server_ip:10000/
