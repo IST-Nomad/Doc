@@ -1,0 +1,5 @@
+
+
+SELECT datname FROM pg_database
+//для просмотра списка баз данных
+

@@ -1,0 +1,6 @@
+
+
+SELECT table_name FROM all_tables;
+select * from v$database - инфа о базе, к которой подключен
+select * from v$instance - инфа об экзепляре оракла
+select * from dba_objects where object_type='TABLE' - Инфа о таблицах

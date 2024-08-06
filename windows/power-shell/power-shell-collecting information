@@ -1,0 +1,56 @@
+PowerShell скрипты для сбора информации о компьютерах
+
+
+//Собираем сведения о рабочих столах локального компьютера
+Get-CimInstance -ClassName Win32_Desktop
+
+//Вывод сведений о BIOS
+Get-CimInstance -ClassName Win32_BIOS
+
+//Вывод сведений о процессоре
+Get-CimInstance -ClassName Win32_Processor | Select-Object -ExcludeProperty "CIM*"
+
+Get-CimInstance -ClassName Win32_ComputerSystem | Select-Object -Property SystemType
+
+SystemType
+----------
+X86-based PC
+
+//Получить данные поставщика вычислительной техники (OEM)
+Get-CimInstance -ClassName Win32_ComputerSystem
+
+//Список установленных исправлений
+Get-CimInstance -ClassName Win32_QuickFixEngineering
+
+//Перечисление сведений о версии операционной системы
+Get-CimInstance -ClassName Win32_OperatingSystem |
+  Select-Object -Property BuildNumber,BuildType,OSType,ServicePackMajorVersion,ServicePackMinorVersion
+
+//Общие сведения о локальных пользователях 
+Get-CimInstance -ClassName Win32_OperatingSystem |
+    Select-Object -Property NumberOfLicensedUsers, NumberOfUsers, RegisteredUser
+
+Get-CimInstance -ClassName Win32_OperatingSystem | Select-Object -Property *user*
+
+//Получение доступного места на диске
+Get-CimInstance -ClassName Win32_LogicalDisk -Filter "DriveType=3"
+
+Get-CimInstance -ClassName Win32_LogicalDisk -Filter "DriveType=3" |
+    Measure-Object -Property FreeSpace,Size -Sum |
+    Select-Object -Property Property,Sum
+
+//Получение сведений о сеансе входа        
+Get-CimInstance -ClassName Win32_LogonSession
+
+//Отобразить пользователя, вошедшего в определенную компьютерную систему
+Get-CimInstance -ClassName Win32_ComputerSystem -Property UserName
+
+//Получение местного времени с компьютера
+Get-CimInstance -ClassName Win32_LocalTime
+
+//Отображение состояния службы
+Get-CimInstance -ClassName Win32_Service |
+    Select-Object -Property Status,Name,DisplayName
+
+Get-CimInstance -ClassName Win32_Service |
+    Format-Table -Property Status, Name, DisplayName -AutoSize -Wrap    
