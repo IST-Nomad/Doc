@@ -119,3 +119,7 @@ Remove-Item -Path C:\temp\DeleteMe
 
 Если вам не нужно запрашивать каждый содержащийся элемент, укажите параметр Recurse :
 Remove-Item -Path C:\temp\DeleteMe -Recurse
+
+
+//Вы можете проверить, что аккаунт заблокирован в графический консоли ADUC или с помощью комнадлета
+Get-ADUser -Identity admin -Properties LockedOut,DisplayName | Select-Object samaccountName, displayName,Lockedout
