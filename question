@@ -1,5 +1,5 @@
-1 перевод читы в иркутский домен
-2 Как добавить неразмеченную область диску Linux (centos 5)
+#1 перевод читы в иркутский домен
+#2 Как добавить неразмеченную область диску Linux (centos 5)
 #3 Настроить роутер WL-2 
 #4 Убрать telnet, настроить ssh, настроить console на Cisco
 #5 Запустить ESXi на всех хостах
@@ -12,16 +12,16 @@
 12 oracle linux install
 #13 VMware EVC
 #14 Oracle Database JDBC driver
-!!15 pvst на cisco, vpn, ipsec
+!!!15 pvst на cisco, vpn, ipsec
 #16 изменить телефонный справочник
 17 настройка mikrotik crs312-4c+8xg-rm
 #18 ftp server 10.129.135.205 на диск T 
 !19 Курс по базам данных
-!!!!20 Установить cisco packet tracer смоделировать сеть банка (GNS3)
-?21 Установить две серверные OS
+!!!!!20 Установить cisco packet tracer смоделировать сеть банка (GNS3)
+21 Хосты завести за vGate
 #22 Установить KMS сервер
-?23 Настроить сервера Always On
-!24 Устанвить DC на ESXi
+23 Backup DB (oracle, postgresql)
+!!24 Устанвить DC на ESXi
 ?25 Установка iRedMail https://habr.com/ru/articles/96314/
 26 Заменить rasbery на nettop (курсы валют)
 #27 запустить helpdesk
@@ -31,15 +31,30 @@
 31 Мурашева доступ IDECO 
 #32 добавить ядра krona_data(205)
 #33 amur_06 изменить учетку Дурнова на Денисову
-34 Наполнение wiki
+34 Наполнение wiki--------
 35 amur_06 завести в Иркутский домен
 36 Утилизировать АКБ от ИБП
 37 скачать, установить RouterOS
-
-
+#38 chita_10 Куренкова завести в домен
+39 флешка microSD Backup rasbery remote control
+40 Расширение диска L Krona_data AOMEI Dynamic Disk Manager
+41 Развернуть, настроить Ansible
+42 Восстановить корпус ноутбука
+43 
+44
+45
+46
 
 
 
 https://getnoc.com/ru/
 https://archive.org/search?query=24h2+ltsc
 Лаб работы https://github.com/vlad-gavrilov/cisco
+
+echo Qwer1234 | anydesk Qwer1234 --with-password
+sudo echo Qwer1234 | anydesk --set-password
+echo Qwer1234 | sudo anydesk —set-password
+sudo sed -i '' -e 's/#  AutomaticLogin/AutomaticLogin/g' -e 's/#WaylandEnable/WaylandEnable/g' /etc/gdm3/custom.conf
+
+
+--admin-settings:connection

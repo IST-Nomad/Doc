@@ -1,5 +1,5 @@
 //включить RDP
-#reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 0 /f 
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 0 /f 
 //отключить брандмауэр 
 netsh advfirewall set allprofiles state off
 //для получения системной информации
@@ -45,5 +45,5 @@ R - доступ только на чтение
 W - доступ только на запись
 D - доступ на удаление
 
-// отключить брандмауэр
-NetSh Advfirewall set allprofiles state off
+//посмотреть список пользователей на ПК
+net user
