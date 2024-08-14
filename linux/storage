@@ -83,3 +83,10 @@ root@zabbix:/home/zabbix# lvextend -l +2105 /dev/ubuntu-vg/ubuntu-lv
   Logical volume ubuntu-vg/ubuntu-lv successfully resized.
 root@zabbix:/home/zabbix# resize2fs /dev/ubuntu-vg/ubuntu-lv
 */
+
+
+
+find /var/log/ -type f -name "*log" -exec cp /dev/null {} \;
+yum clean all
+rm -rf /var/cache/yum
+rm -rf /var/tmp/yum-*

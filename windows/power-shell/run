@@ -34,3 +34,48 @@ control - Панель управления.
 osk - Экранная клавиатура.
 snippingtool - Ножницы.
 mdsched - Проверка оперативной памяти.
+
+Инструменты и утилиты Windows
+
+calc Калькулятор
+chkdsk Проверка диска
+charmap Карта символов
+cleanmgr Clean Manager — утилита очистки диска
+clipbrd Средство просмотра буфера обмена (недоступно после Windows XP)
+comp Сравнить файлы
+colorcpl Управление цветом
+cttune Настройщик ClearType
+dxdiag Поиск и устранение неисправностей Direct X
+eudcedit Редактор персональных данных
+fonts Шрифты
+fsquirt Мастер переноса данных Bluetooth
+ftp MS-DOS FTP
+iexplore Internet Explorer
+joy.cpl Игровые контроллеры
+label Серийный номер тома для C:
+magnify Лупа Windows
+microsoft-edge:// Edge
+migwiz Мастер переноса — инструмент переноса файлов и настроек
+mrt Инструмент для удаления вредоносного ПО
+msiexec Информация об установщике Windows
+msinfo32 Информация о системе
+mspaint Paint
+narrator Диктор
+powershell Powershell
+shrpubw Мастер создания общих папок
+sigverif Инструмент проверки подписи файлов
+sndvol Регулирование громкости
+snippingtool Ножницы / Инструменты для создания скриншотов
+stikynot Липкие заметки
+utilman Настройки диктора
+verifier Утилита Driver Verifier Utility
+was Контакты
+wf.msc Брандмауэр Windows с расширенной безопасностью
+wfs Факс и сканирование Windows
+wiaacmgr Сканер
+winver Версия Windows (Проверьте версию Windows)
+wmplayer Windows Media Player
+write WordPad
+xpsrchvw XPS Viewer
+winword Word
+Word /safe Безопасный режим Word

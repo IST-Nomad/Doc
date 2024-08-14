@@ -39,7 +39,7 @@
 39 флешка microSD Backup rasbery remote control
 40 Расширение диска L Krona_data AOMEI Dynamic Disk Manager
 41 Развернуть, настроить Ansible
-42 Восстановить корпус ноутбука
+#42 Восстановить корпус ноутбука
 43 
 44
 45
@@ -58,3 +58,6 @@ sudo sed -i '' -e 's/#  AutomaticLogin/AutomaticLogin/g' -e 's/#WaylandEnable/Wa
 
 
 --admin-settings:connection
+
+wget https://download.anydesk.com/rpi/anydesk_6.3.0-1_armhf.deb
+sudo dpkg -i anydesk_6.3.0-1_armhf.deb
