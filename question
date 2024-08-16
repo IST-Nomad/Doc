@@ -5,7 +5,9 @@
 #5 Запустить ESXi на всех хостах
 #6 Настроить vMotion
 7 Неретина двухсторонняя печать из 1С
-8 Подготовка к запуску Finist
+8 Подготовка к запуску Finist;
+Microsoft Windows Server 2022 (2019) на железе, Microsoft SQL Server 2022 (2019) на железе;
+Две виртуалки, тест и предбой;
 9 AD политики, установка приложений
 10 Мониторинг, zabbix, свои темплейты
 11 Инвентаризация серверной
@@ -20,7 +22,7 @@
 !!!!!20 Установить cisco packet tracer смоделировать сеть банка (GNS3)
 21 Хосты завести за vGate
 #22 Установить KMS сервер
-23 Backup DB (oracle, postgresql)
+23 Backup DB (oracle, postgresql, ms sql)
 !!24 Устанвить DC на ESXi
 ?25 Установка iRedMail https://habr.com/ru/articles/96314/
 26 Заменить rasbery на nettop (курсы валют)
@@ -31,7 +33,7 @@
 31 Мурашева доступ IDECO 
 #32 добавить ядра krona_data(205)
 #33 amur_06 изменить учетку Дурнова на Денисову
-34 Наполнение wiki--------
+34 Наполнение wiki-&-~-$-%-*-^-@-
 35 amur_06 завести в Иркутский домен
 36 Утилизировать АКБ от ИБП
 37 скачать, установить RouterOS
@@ -40,7 +42,7 @@
 40 Расширение диска L Krona_data AOMEI Dynamic Disk Manager
 41 Развернуть, настроить Ansible
 #42 Восстановить корпус ноутбука
-43 
+43 Клонировать Finist-test на ESXi
 44
 45
 46
@@ -50,14 +52,14 @@
 https://getnoc.com/ru/
 https://archive.org/search?query=24h2+ltsc
 Лаб работы https://github.com/vlad-gavrilov/cisco
+https://vk.com/video/@database_info/all?to=L3ZpZGVvL0BkYXRhYmFzZV9pbmZvL2FsbD90bz1MM1pwWkdWdkwwQmtZWFJoWW1GelpWOXBibVp2TDJGc2JEOC0-
 
-echo Qwer1234 | anydesk Qwer1234 --with-password
-sudo echo Qwer1234 | anydesk --set-password
-echo Qwer1234 | sudo anydesk —set-password
-sudo sed -i '' -e 's/#  AutomaticLogin/AutomaticLogin/g' -e 's/#WaylandEnable/WaylandEnable/g' /etc/gdm3/custom.conf
+	Программное обеспечение сервера:
+●	Microsoft Windows Server версии 2016 и выше, 
+●	.Net Framework 4.8. 
+●	Региональные настройки: должны быть установлены язык – русский и расположение – русский.
+●	Для использования аутентификации по логину и паролю необходимо установить   распространяемый компонент Microsoft Visual C++ соответствующей разрядности приложения  (vc_redist.x86.exe  или vc_redist.x64.exe)
 
-
---admin-settings:connection
-
-wget https://download.anydesk.com/rpi/anydesk_6.3.0-1_armhf.deb
-sudo dpkg -i anydesk_6.3.0-1_armhf.deb
+	Программное обеспечение СУБД:
+●	Microsoft SQL Server от версии: 2019 редакций Standard, Enterprise, Datacenter.
+○	Collation (Cyrillic_General_CI_AS)
