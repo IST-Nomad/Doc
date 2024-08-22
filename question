@@ -24,7 +24,7 @@ Microsoft Windows Server 2022 (2019) на железе, Microsoft SQL Server 202
 #22 Установить KMS сервер
 23 Backup DB (oracle, postgresql, ms sql)
 !!24 Устанвить DC на ESXi
-?25 Установка iRedMail https://habr.com/ru/articles/96314/
+25 
 26 Заменить rasbery на nettop (курсы валют)
 #27 запустить helpdesk
 #28 настроить VeeamBackup
@@ -38,11 +38,11 @@ Microsoft Windows Server 2022 (2019) на железе, Microsoft SQL Server 202
 36 Утилизировать АКБ от ИБП
 37 скачать, установить RouterOS
 #38 chita_10 Куренкова завести в домен
-39 флешка microSD Backup rasbery remote control
-40 Расширение диска L Krona_data AOMEI Dynamic Disk Manager
+#39 флешка microSD Backup rasbery remote control
+#40 Расширение диска L Krona_data AOMEI Dynamic Disk Manager
 41 Развернуть, настроить Ansible
 #42 Восстановить корпус ноутбука
-43 Клонировать Finist-test на ESXi
+#43 Подготовить сервер под финист бой
 44
 45
 46
@@ -63,3 +63,6 @@ https://vk.com/video/@database_info/all?to=L3ZpZGVvL0BkYXRhYmFzZV9pbmZvL2FsbD90b
 	Программное обеспечение СУБД:
 ●	Microsoft SQL Server от версии: 2019 редакций Standard, Enterprise, Datacenter.
 ○	Collation (Cyrillic_General_CI_AS)
+
+
+https://github.com/bobbyiliev/introduction-to-bash-scripting
