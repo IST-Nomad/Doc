@@ -12,5 +12,5 @@ Set m_Year=%f_Date:~8,4%
 
 cd C:\Users\oit_10\Documents\Doc
 git add . | git commit -m "%f_Month%.%f_Day%.%f_Time%" | git push origin work
-2>>logfile.log
+
 pause
