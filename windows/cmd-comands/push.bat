@@ -1,4 +1,4 @@
-echo off
+echo 
 
 Set f_Date=%Date%
 Set f_Time=%Time%
@@ -11,5 +11,6 @@ Set m_Date=%Date:.=%
 Set m_Year=%f_Date:~8,4%
 
 cd C:\Users\oit_10\Documents\Doc
-git add . | git commit -m "%f_Month%.%f_Day%" | git push origin work
+git add . | git commit -m "%f_Month%.%f_Day%.%f_Time%" | git push origin work
+2>>logfile.log
 pause
