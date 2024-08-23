@@ -56,7 +56,7 @@ SystemMaxFileSize=12M
 //На данном этапе у нас есть один PV (physical volume) один VG (volume group) и один LV (logical volume).
 в зависимости от того где есть  свободное место, там и начинать
 Для создания нового раздела на жестком диске мы воспользуется программой fdisk:
-# fdisk /dev/vda
+# fdisk /dev/sda
 n – для создания нового раздела на диске; p – для присвоения primary новому разделу.
 //Теперь необходимо сменить тип раздела с Linux на Linux LVM: t – для смены типа созданного раздела. Указываем номер нашего раздела: 8e – это hex-код для типа LVM.
 После того, как мы успешно создали раздел, необходимо создать новый physical volume на основе этого раздела:
@@ -77,8 +77,8 @@ root@zabbix:/home/zabbix# vgdisplay
   VG Name               ubuntu-vg           
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   Alloc PE / Size       2560 / 10.00 GiB
-  Free  PE / Size       2105 / 8.22 GiB
-root@zabbix:/home/zabbix# lvextend -l +2105 /dev/ubuntu-vg/ubuntu-lv
+  Free  PE / Size       1023 / 8.22 GiB
+root@zabbix:/home/zabbix# lvextend -l +1023 /dev/ubuntu-vg/ubuntu-lv
   Size of logical volume ubuntu-vg/ubuntu-lv changed from 10.00 GiB (2560 extents) to 18.22 GiB (4665 extents).
   Logical volume ubuntu-vg/ubuntu-lv successfully resized.
 root@zabbix:/home/zabbix# resize2fs /dev/ubuntu-vg/ubuntu-lv
