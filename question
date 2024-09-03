@@ -68,3 +68,11 @@ https://vk.com/video/@database_info/all?to=L3ZpZGVvL0BkYXRhYmFzZV9pbmZvL2FsbD90b
 https://github.com/bobbyiliev/introduction-to-bash-scripting
 
 https://www.faktura.ru/admin.jsp
+
+
+\\TCBDomen.trustcombank.ru\SysVol\TCBDomen.trustcombank.ru\Policies\{C27A8D67-50CD-42CC-A741-8B164439CCEB}\User\Scripts\Logon\finist_client1.bat
+\\TCBDomen.trustcombank.ru\SysVol\TCBDomen.trustcombank.ru\Policies\{C27A8D67-50CD-42CC-A741-8B164439CCEB}\User\Scripts\Logon\install.bat
+cd \\TCBDomen.trustcombank.ru\SysVol\TCBDomen.trustcombank.ru\Policies\{C27A8D67-50CD-42CC-A741-8B164439CCEB}\User\Scripts\Logon\
+aspnetcore-runtime-6.0.21-win-x64.exe /install /quiet /norestart
+report@krona-bank.ru 
+Бойко Елена Валерьевна
