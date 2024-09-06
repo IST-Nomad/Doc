@@ -1,6 +1,3 @@
 echo off
-rem выбираем кодировку для русского языка
-chcp 65001
-rem копируем 
-robocopy \\TCBDomen.trustcombank.ru\NETLOGON\Finist\Client c:\Finist\Client\ /E /R:1 /W:0
-
+robocopy \\TCBDomen.trustcombank.ru\NETLOGON\Finist\ c:\Users\%USERNAME%\Desktop\  /R:1 /W:0
+pause
