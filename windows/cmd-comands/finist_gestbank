@@ -1,8 +1,0 @@
-
-
-echo
-rem выбираем кодировку для русского языка
-chcp 65001
-rem копируем 
-robocopy \\TCBDomen.trustcombank.ru\NETLOGON\Finist\Client c:\Finist\Client\ /E /R:1 /W:0
-
