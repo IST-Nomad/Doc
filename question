@@ -86,3 +86,37 @@ IBS
 
 C:\Finist\IBSDataFolder\
 https://macroscop.com/podderzhka/distributivy
+
+
+
+
+
+
+neighbor 172.16.139.6 Tunnel1392 
+neighbor 172.16.139.10 Tunnel1391
+
+interface Tunnel1
+ description HO-EDGE-R1 active VTI
+ bandwidth 10000
+ #ip address 172.16.139.6 255.255.255.252
+ ip mtu 1400
+ delay 1000
+ keepalive 5 3
+ #tunnel source 62.141.98.154
+ tunnel mode ipsec ipv4
+ tunnel destination 195.206.62.5
+ tunnel path-mtu-discovery
+ tunnel protection ipsec profile HO-VPN
+!
+interface Tunnel2
+ description HO-EDGE-R2 standby VTI
+ bandwidth 1000
+ ip address #72.16.139.10 255.255.255.252
+ ip mtu 1400
+ delay 10000
+ keepalive 5 3
+ tunnel source 62.141.98.154
+ tunnel mode ipsec ipv4
+ tunnel destination 185.242.116.75
+ tunnel path-mtu-discovery
+ tunnel protection ipsec profile HO-VPN
