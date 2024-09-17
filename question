@@ -87,7 +87,7 @@ IBS
 C:\Finist\IBSDataFolder\
 https://macroscop.com/podderzhka/distributivy
 
-
+https://www.esetnod32.ru/download/utilities/
 
 
 
@@ -115,7 +115,7 @@ interface Tunnel2
  ip mtu 1400
  delay 10000
  keepalive 5 3
- tunnel source 62.141.98.154
+ #tunnel source 62.141.98.154
  tunnel mode ipsec ipv4
  tunnel destination 185.242.116.75
  tunnel path-mtu-discovery
