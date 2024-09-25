@@ -120,3 +120,5 @@ interface Tunnel2
  tunnel destination 185.242.116.75
  tunnel path-mtu-discovery
  tunnel protection ipsec profile HO-VPN
+
+\\Gestbank\справочники
