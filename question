@@ -122,3 +122,6 @@ interface Tunnel2
  tunnel protection ipsec profile HO-VPN
 
 \\Gestbank\справочники
+
+
+Ошибка ora_func.mac строка 304[0]: Ошибка выполнения TRsdError
