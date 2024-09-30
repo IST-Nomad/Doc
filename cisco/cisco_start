@@ -68,7 +68,10 @@ tftpdnld -r
 
 //команды rommon
 dir flash:
-boot flash:{c2600-io3-mz.121-6.5.bin}
+boot flash:c890-universalk9-mz.154-3.M6a.bin
+
+
+xmodem -y flash/c890-universalk9-mz.154-3.M6a.bin
 
 #reload in 1 //перезагрузка через минуту
 
