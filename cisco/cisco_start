@@ -9,6 +9,12 @@
 #copy running-config startup-config
 //устройство обнулено
 
+//После изменения конфигурации необходимо вернуть обратно 
+conft
+config-register 0x2102
+end
+reload
+
 //Первичная настройка
 #conf t
 //Пароль на вход
@@ -219,15 +225,16 @@ username user privilege 15 secret password
 hostname R1
 ip domain-name R1.domain
 
-Генерируем ключ для SSH
+//Генерируем ключ для SSH
 crypto key generate rsa
-
-Настраиваем SSH
+768
+//Настраиваем SSH
 ip ssh authentication-retries 5
 ip ssh version 2
 ip ssh time-out 60
 
-Разрешаем telnet и ssh на удаленной консоли и делаем доступ сразу в привилегированный режим 15го уровня line vty 0 4
+Разрешаем telnet и ssh на удаленной консоли и делаем доступ сразу в привилегированный режим 15го уровня 
+line vty 0 4
 transport input telnet ssh
 privilege level 15
 
