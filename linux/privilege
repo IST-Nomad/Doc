@@ -1,3 +1,6 @@
 adduser sammy
 usermod -aG sudo sammy
 su - sammy
+
+sudo deluser newuser
+deluser --remove-home newuser

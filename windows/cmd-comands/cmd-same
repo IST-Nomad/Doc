@@ -19,9 +19,9 @@ cd C:/Distr/iperf3.1.1_64
 
 //Удалить файл
 del /F /Q /A "Путь к файлу"
-del /s /q C:\TEMP\*.*
+del /s /q C:\Finist\*.*
 
-//Копировать файлы
+//Копировать файлыd
 copy /y L:\Soft\TERM_TST C:\TEMP
 
 //cmd от имени системы
@@ -47,3 +47,6 @@ D - доступ на удаление
 
 //посмотреть список пользователей на ПК
 net user
+
+//убрать срок пароля
+net accounts /maxpwage:unlimited

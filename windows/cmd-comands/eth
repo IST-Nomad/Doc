@@ -1,0 +1,3 @@
+netsh trace start persistent=yes capture=yes tracefile=c:\tmp\trace.etl IPv4.Address=10.129.130.132 Protocol=(TCP,UDP)  maxSize=500
+
+netsh trace start

@@ -11,7 +11,7 @@ Set f_Day=%f_Day: =%
 Set m_Date=%Date:.=%
 Set m_Year=%f_Date:~8,4%
 
-set archiv=L:\arhiv_obmen\FTS\1459\%f_Year%\%f_Month%\%f_Day%
+set archiv=L:\arhiv_obmen\FTS\1459\2024\09\03
 set ESDT=L:\TBSVK\RVK_Kontrakt_3_0\IZ_FTS\406FZ\ESDT\
 
 md %archiv%
@@ -83,8 +83,8 @@ Set f_Year=%f_Date:~6,4%
 Set f_Month=%f_Month: =%
 Set f_Day=%f_Day: =%
 
-set DT_KA=L:\TBSVK\RVK_Kontrakt_3_0\IZ_FTS\406FZ\DT_KA\%f_Year%\%f_Month%\%f_Day%
-set DT=L:\TBSVK\RVK_Kontrakt_3_0\IZ_FTS\406FZ\DT\%f_Year%\%f_Month%\%f_Day%
+set DT_KA=L:\TBSVK\RVK_Kontrakt_3_0\IZ_FTS\406FZ\DT_KA\2024\09\03
+set DT=L:\TBSVK\RVK_Kontrakt_3_0\IZ_FTS\406FZ\DT\2024\09\03
 rem set DT_KA=L:\TBSVK\RVK_Kontrakt_3_0\IZ_FTS\406FZ\DT_KA\2014\09\30
 rem  DT=L:\TBSVK\RVK_Kontrakt_3_0\IZ_FTS\406FZ\DT\2014\09\30
 
@@ -159,8 +159,8 @@ Set f_Month=%f_Month: =%
 Set f_Day=%f_Day: =%
 
 
-set KVIT=L:\TBSVK\RVK_Kontrakt_3_0\B_FTS\406FZ\KVIT\%f_Year%\%f_Month%\%f_Day%
-set KESDT=L:\TBSVK\RVK_Kontrakt_3_0\B_FTS\406FZ\KESDT\%f_Year%\%f_Month%\%f_Day%
+set KVIT=L:\TBSVK\RVK_Kontrakt_3_0\B_FTS\406FZ\KVIT\2024\09\03
+set KESDT=L:\TBSVK\RVK_Kontrakt_3_0\B_FTS\406FZ\KESDT\2024\09\03
 
 rem set KVIT=L:\TBSVK\RVK_Kontrakt_3_0\B_FTS\406FZ\KVIT\2014\09\30
 rem KESDT=L:\TBSVK\RVK_Kontrakt_3_0\B_FTS\406FZ\KESDT\2014\09\30
@@ -228,8 +228,8 @@ Set f_Year=%f_Date:~6,4%
 Set f_Month=%f_Month: =%
 Set f_Day=%f_Day: =%
 
-set KESDT=L:\TBSVK\RVK_Kontrakt_3_0\B_FTS\406FZ\KESDT\%f_Year%\%f_Month%\%f_Day%
-set archiv=l:\arhiv_obmen\FTS\1459\%f_Year%\%f_Month%\%f_Day%
+set KESDT=L:\TBSVK\RVK_Kontrakt_3_0\B_FTS\406FZ\KESDT\2024\09\03
+set archiv=l:\arhiv_obmen\FTS\1459\2024\09\03
 
 echo  **************************************************
 echo  --------------------IV Этап----------------------- 

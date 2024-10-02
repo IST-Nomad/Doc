@@ -6,7 +6,7 @@
 #6 Настроить vMotion
 7 Неретина двухсторонняя печать из 1С
 8 Подготовка к запуску Finist;
-Microsoft Windows Server 2022 (2019) на железе, Microsoft SQL Server 2022 (2019) на железе;
+Microsoft Windows Server 2022 на железе, Microsoft SQL Server 2022 на железе;
 Две виртуалки, тест и предбой;
 9 AD политики, установка приложений
 10 Мониторинг, zabbix, свои темплейты
@@ -34,7 +34,7 @@ Microsoft Windows Server 2022 (2019) на железе, Microsoft SQL Server 202
 #32 добавить ядра krona_data(205)
 #33 amur_06 изменить учетку Дурнова на Денисову
 34 Наполнение wiki-&-~-$-%-*-^-@-
-35 amur_06 завести в Иркутский домен
+35 
 36 Утилизировать АКБ от ИБП
 37 скачать, установить RouterOS
 #38 chita_10 Куренкова завести в домен
@@ -48,7 +48,7 @@ Microsoft Windows Server 2022 (2019) на железе, Microsoft SQL Server 202
 46
 
 
-
+https://habr.com/ru/news/837712/
 https://getnoc.com/ru/
 https://archive.org/search?query=24h2+ltsc
 Лаб работы https://github.com/vlad-gavrilov/cisco
@@ -66,3 +66,45 @@ https://vk.com/video/@database_info/all?to=L3ZpZGVvL0BkYXRhYmFzZV9pbmZvL2FsbD90b
 
 
 https://github.com/bobbyiliev/introduction-to-bash-scripting
+
+
+[ODBC]
+IBS
+
+C:\Finist\IBSDataFolder\
+https://macroscop.com/podderzhka/distributivy
+
+https://www.esetnod32.ru/download/utilities/
+
+
+
+
+neighbor 172.16.139.6 Tunnel1392 
+neighbor 172.16.139.10 Tunnel1391
+
+interface Tunnel1
+ description HO-EDGE-R1 active VTI
+ bandwidth 10000
+ #ip address 172.16.139.6 255.255.255.252
+ ip mtu 1400
+ delay 1000
+ keepalive 5 3
+ #tunnel source 62.141.98.154
+ tunnel mode ipsec ipv4
+ tunnel destination 195.206.62.5
+ tunnel path-mtu-discovery
+ tunnel protection ipsec profile HO-VPN
+!
+interface Tunnel2
+ description HO-EDGE-R2 standby VTI
+ bandwidth 1000
+ ip address #72.16.139.10 255.255.255.252
+ ip mtu 1400
+ delay 10000
+ keepalive 5 3
+ #tunnel source 62.141.98.154
+ tunnel mode ipsec ipv4
+ tunnel destination 185.242.116.75
+ tunnel path-mtu-discovery
+ tunnel protection ipsec profile HO-VPN
+
