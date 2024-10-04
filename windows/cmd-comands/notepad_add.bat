@@ -1,5 +1,5 @@
 @echo off
-SET nppPath=C:\Program Files (x86)\Notepad++\notepad++.exe
+SET nppPath=C:\Program Files\Notepad++\notepad++.exe
 SET itemName=Edit with Notepad++
 rem all file types
 reg add "HKEY_CLASSES_ROOT\*\shell\%itemName%"         /t REG_SZ /v "" /d "%itemName%"   /f
