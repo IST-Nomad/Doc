@@ -174,7 +174,7 @@ cisco#clock set 17:05:00 15 Jul 2024
 Входим в режим конфигурирования;
 cisco#conf t
 Указываем домен и имя устройства (для генерации ключа);
-cisco(config)#ip domain name domain.local
+cisco(config)#ip domain-name batr.local
 cisco(config)#hostname cisco-ssh
 Генерируем ключ для SSH;
 cisco-ssh(config)#crypto key generate rsa
