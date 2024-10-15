@@ -1,28 +1,19 @@
 
-IRK-MOLOKO-EDGE-R2#sh run
-Building configuration...
-
-Current configuration : 8336 bytes
 !
-! Last configuration change at 12:16:13 IRK Fri Jul 17 2020 by kronadm
-! NVRAM config last updated at 12:16:18 IRK Fri Jul 17 2020 by kronadm
+! Last configuration change at 15:24:24 IRK Tue Oct 15 2024 by krona
+! NVRAM config last updated at 15:24:27 IRK Tue Oct 15 2024 by krona
 !
 version 15.4
-no service pad
-service timestamps debug datetime msec localtime year
-service timestamps log datetime msec localtime year
+service timestamps debug datetime msec
+service timestamps log datetime msec
 service password-encryption
-no service dhcp
 !
 hostname IRK-MOLOKO-EDGE-R2
 !
 boot-start-marker
-boot system flash c890-universalk9-mz.154-3.M6a.bin
 boot-end-marker
 !
-aqm-register-fnf
 !
-enable secret 5 $1$8rjF$6qXXkl.lc633maob2FaMT.
 !
 aaa new-model
 !
@@ -42,38 +33,18 @@ clock timezone IRK 8 0
 !
 !
 !
-no ip source-route
-!
-!
-!
-!
-!
 !
 !
 !
 
-          
+
 !
 !
 !
 !
-no ip bootp server
 ip domain name krona-bank.ru
-ip name-server 8.8.8.8
 ip name-server 195.206.40.177
 ip name-server 195.206.40.175
-ip inspect udp idle-time 180
-ip inspect tcp idle-time 180
-ip inspect tcp synwait-time 1
-ip inspect tcp max-incomplete host 10 block-time 0
-ip inspect name INSPECT_OUT dns
-ip inspect name INSPECT_OUT icmp router-traffic
-ip inspect name INSPECT_OUT ntp
-ip inspect name INSPECT_OUT tcp router-traffic
-ip inspect name INSPECT_OUT udp router-traffic
-ip inspect name INSPECT_OUT http
-ip inspect name INSPECT_OUT https
-ip inspect name INSPECT_OUT ftp
 ip inspect name fw-outside http timeout 600
 ip inspect name fw-outside https timeout 600
 ip inspect name fw-outside dns timeout 5
@@ -88,48 +59,36 @@ no ipv6 cef
 !
 !
 multilink bundle-name authenticated
-vpdn enable
 !
 !
 !
-!
-key chain FHRP-Auth
- key 1
-  key-string 7 0951461B412B3B20012B212131
- key 2
-  key-string 7 1235374703123C313204002C16
- key 3
-  key-string 7 141C234116526F0B3239223C07
- key 4
-  key-string 7 08135B0414341C52461D0B09
- key 5
-  key-string 7 00361F2215553930452A45743F
 !
 !
 !
 !
 !
 cts logging verbose
-license udi pid CISCO891-PCI-K9 sn FCZ1525C2K5
+license udi pid C881-K9 sn FCZ1908C0HL
 !
 !
 archive
  log config
   logging enable
   hidekeys
-username ciscoadm privilege 15 secret 5 $1$PZKY$X2kOaQFHuev2Gr33BcyC50
-username kronadm privilege 15 secret 5 $1$6MuY$Hk2QrKRIsm9xRnn.4J8Ty.
-!
-redundancy
-!
+ path tftp://10.129.135.110/MOLOKO-EDGE-R2/$h
+ write-memory
+username krona privilege 15 secret 5 $1$zs25$js2Cf/VeVb2iPgFqrWJ9i.
 !
 !
 !
-no cdp run
 !
-track 1 ip route 10.129.135.0 255.255.255.0 reachability
- delay up 10
 !
+ip ssh time-out 60
+ip ssh authentication-retries 5
+ip ssh rsa keypair-name IRK-MOLOKO-EDGE-R2
+ip ssh version 2
+ip ssh dh min size 2048
+ip scp server enable
 ! 
 !
 crypto isakmp policy 100
@@ -154,7 +113,8 @@ crypto ipsec profile HO-VPN
 !
 !
 !
-!         
+!
+!
 !
 !
 interface Tunnel1
@@ -164,7 +124,7 @@ interface Tunnel1
  ip mtu 1400
  delay 10000
  keepalive 5 3
- tunnel source GigabitEthernet0
+ tunnel source FastEthernet4
  tunnel mode ipsec ipv4
  tunnel destination 195.206.62.4
  tunnel path-mtu-discovery
@@ -177,7 +137,7 @@ interface Tunnel2
  ip mtu 1400
  delay 10000
  keepalive 5 3
- tunnel source GigabitEthernet0
+ tunnel source FastEthernet4
  tunnel mode ipsec ipv4
  tunnel destination 176.215.252.102
  tunnel path-mtu-discovery
@@ -196,24 +156,6 @@ interface FastEthernet3
  no ip address
 !
 interface FastEthernet4
- no ip address
-!
-interface FastEthernet5
- no ip address
-!
-interface FastEthernet6
- no ip address
-!
-interface FastEthernet7
- no ip address
-!
-interface FastEthernet8
- no ip address
- shutdown
- duplex auto
- speed auto
-!
-interface GigabitEthernet0
  description Outside-Inet
  ip address 62.141.98.154 255.255.255.252
  ip access-group Outside-IN in
@@ -243,10 +185,6 @@ interface Vlan1
  standby 139 track 1 decrement 15
  ip tcp adjust-mss 1360
 !
-interface Async1
- no ip address
- encapsulation slip
-!
 !
 router eigrp 65000
  network 0.0.0.0
@@ -263,56 +201,18 @@ no ip http server
 no ip http secure-server
 !
 !
-ip ftp password 7 121D1C15511F0A563B3235
-ip tftp source-interface Vlan1
-ip tftp blocksize 8192
-ip dns server
 ip nat translation timeout 3600
 ip nat translation tcp-timeout 3600
 ip nat translation udp-timeout 200
 ip nat translation dns-timeout 10
 ip nat translation icmp-timeout 30
 ip nat translation port-timeout tcp 2891 36000
-ip nat inside source list 111 interface GigabitEthernet0 overload
+ip nat inside source list 111 interface FastEthernet4 overload
 ip route 0.0.0.0 0.0.0.0 62.141.98.153
 ip route 10.0.0.0 255.0.0.0 Null0
 ip route 172.16.0.0 255.240.0.0 Null0
 ip route 192.168.0.0 255.255.0.0 Null0
-
-Please create RSA keys to enable SSH (and of atleast 768 bits for SSH v2).
-
-ip ssh rsa keypair-name IRK-MOLOKO-EDGE-R2
-ip ssh version 2
-ip ssh dh min size 2048
-ip scp server enable
 !
-ip access-list extended FIREWALL
- permit tcp any any eq 22
- permit ip host 195.206.62.5 host 91.185.48.3
- permit ip host 195.206.62.2 host 91.185.48.3
- permit ip host 195.206.62.3 host 91.185.48.3
- permit ip host 195.206.62.4 host 91.185.48.3
- permit ip host 194.186.61.185 host 91.185.48.3
- permit ip host 194.186.61.186 host 91.185.48.3
- permit ip host 194.186.61.187 host 91.185.48.3
- permit ip host 194.186.61.188 host 91.185.48.3
- permit ip host 194.186.61.189 host 91.185.48.3
- permit ip host 194.186.61.190 host 91.185.48.3
- permit udp host 91.142.144.76 eq domain any
- permit icmp host 91.142.144.76 host 91.185.48.3
- permit icmp any host 91.185.48.3
- permit icmp any host 195.206.62.2
- permit icmp any host 195.206.62.3
- permit icmp any host 195.206.62.4
- permit icmp any host 195.206.62.5
- permit ahp host 195.206.62.4 host 91.185.48.3
- permit esp host 195.206.62.4 host 91.185.48.3
- permit udp host 195.206.62.4 host 91.185.48.3 eq isakmp
- permit gre host 91.229.154.2 host 91.185.48.3
- deny   ip any any log
-ip access-list extended NAT
- permit ip 10.129.136.0 0.0.0.255 any
- permit ip 10.129.135.0 0.0.0.255 any
 ip access-list extended Outside-IN
  permit tcp any any established
  permit ip 91.229.154.0 0.0.0.255 any
@@ -334,17 +234,7 @@ ip access-list extended outside
  permit icmp any host 91.185.48.3
  deny   ip any any log
 !
-ip sla auto discovery
-dialer-list 1 protocol ip permit
 !
-route-map nonat permit 10
- match ip address 111
-!
-!
-access-list 1 permit 10.129.136.0 0.0.0.255
-access-list 101 permit icmp any any
-access-list 111 permit ip 10.129.139.0 0.0.0.255 any
-access-list 2035 permit ip 10.129.136.0 0.0.0.255 10.129.135.0 0.0.0.255
 !
 !
 !
@@ -361,31 +251,21 @@ mgcp profile default
 !
 !
 !
-!         
 !
 !
 !
 line con 0
- password 7 022110531F050129465F1B1F46464B525D
  logging synchronous
-line 1
- modem InOut
- speed 115200
- flowcontrol hardware
+ no modem enable
 line aux 0
 line vty 0 4
- exec-timeout 0 0
  privilege level 15
  logging synchronous
- transport input ssh
-line vty 5
- transport input none
+ transport input telnet ssh
 !
-scheduler max-task-time 5000
-ntp server 194.190.168.1
-ntp server 46.254.241.75
-ntp server 89.109.251.22 prefer
+scheduler allocate 20000 1000
+ntp server 10.129.135.110
+!
+!
 !
 end
-
-IRK-MOLOKO-EDGE-R2# 
