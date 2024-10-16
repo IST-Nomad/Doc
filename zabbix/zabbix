@@ -32,3 +32,5 @@ service zabbix-agent2 restart
 chkconfig --level 35 zabbix-agent2 on
 
 https://github.com/vanohaker/zabbix-compose
+
+docker run --name zabbix-agent -e ZBX_HOSTNAME="wiki" -e ZBX_SERVER_HOST="10.129.135.110" --init -d zabbix/zabbix-agent2:6.0-ubuntu-latest
