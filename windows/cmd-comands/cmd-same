@@ -50,3 +50,10 @@ net user
 
 //убрать срок пароля
 net accounts /maxpwage:unlimited
+
+
+
+sc delete EventManager.Server
+
+
+sc create EventManager.Server start=auto binpath=”Путь до приложения EventManager.Server.Worker.exe”
