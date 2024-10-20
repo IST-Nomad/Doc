@@ -227,7 +227,11 @@ ip domain-name R1.domain
 
 //Генерируем ключ для SSH
 crypto key generate rsa
-768
+//генерим ключ 1024 даем имя IRK-MOLOKO-EDGE-R2
+crypto key generate rsa general-keys label IRK-MOLOKO-EDGE-R2 modulus 1024
+//привязываем ключ к ssh (на некоторых версиях cisco без этого ssh не поднимается)
+ip ssh rsa keypair-name IRK-MOLOKO-EDGE-R2
+
 //Настраиваем SSH
 ip ssh authentication-retries 5
 ip ssh version 2
