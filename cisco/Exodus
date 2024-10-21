@@ -52,3 +52,14 @@ ip access-list extended NAT
     permit ip 10.129.139.0 0.0.0.255 any
 ip access-list extended cryptoacl
     permit ip 10.129.139.0 0.0.0.255 10.129.135.0 0.0.0.255
+
+
+
+interface Tunnel3
+ description IDECO
+ bandwidth 10000
+ ip address 172.16.139.15 255.255.255.252
+ ip mtu 1400
+ delay 10000
+ tunnel source 62.141.98.154
+ tunnel destination 195.206.62.2
