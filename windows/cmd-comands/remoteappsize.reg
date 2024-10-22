@@ -1,0 +1,42 @@
+Windows Registry Editor Version 5.00
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\FontDPI]
+"LogPixels"=dword:00000078
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts]
+"Small Fonts (VGA res)"=-
+"Courier 10,12,15 (VGA res)"=-
+"MS Sans Serif 8,10,12,14,18,24 (VGA res)"=-
+"MS Serif 8,10,12,14,18,24 (VGA res)"=-
+"Courier 10,12,15 (8514a res)"="COURFE.FON"
+"MS Serif 8,10,12,14,18,24 (8514a res)"="SERIFFE.FON"
+"MS Sans Serif 8,10,12,14,18,24 (8514a res)"="SSERIFFE.FON"
+"Small Fonts (8514a res)"="SMALLFE.FON"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\GRE_Initialize]
+"FIXEDFON.FON"="8514fixe.fon"
+"FONTS.FON"="8514syse.fon"
+"OEMFONT.FON"="8514oeme.fon"
+
+[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Hardware Profiles\0001\Software\Fonts]
+"FIXEDFON.FON"="8514fixe.fon"
+"FONTS.FON"="8514syse.fon"
+"OEMFONT.FON"="8514oeme.fon"
+"LogPixels"=dword:00000078
+
+[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Hardware Profiles\Current\Software\Fonts]
+"FIXEDFON.FON"="8514fixe.fon"
+"FONTS.FON"="8514syse.fon"
+"OEMFONT.FON"="8514oeme.fon"
+"LogPixels"=dword:00000078
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Hardware Profiles\0001\Software\Fonts]
+"FIXEDFON.FON"="8514fixe.fon"
+"FONTS.FON"="8514syse.fon"
+"OEMFONT.FON"="8514oeme.fon"
+"LogPixels"=dword:00000078
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Hardware Profiles\Current\Software\Fonts]
+"FIXEDFON.FON"="8514fixe.fon"
+"FONTS.FON"="8514syse.fon"
+"OEMFONT.FON"="8514oeme.fon"
+"LogPixels"=dword:00000078
