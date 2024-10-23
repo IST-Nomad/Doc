@@ -20,7 +20,7 @@ slmgr /
 slui.exe 0x2a 0xC004F069
 
 Активируем Office:
-cd C:\Program Files (x86)\Microsoft Office\Office15
+cd C:\Program Files\Microsoft Office\Office16
 cscript ospp.vbs /sethst:10.129.135.110 
 
 WINDOWS KEY
