@@ -1,7 +1,7 @@
 
 !
-! Last configuration change at 15:24:24 IRK Tue Oct 15 2024 by krona
-! NVRAM config last updated at 15:24:27 IRK Tue Oct 15 2024 by krona
+! Last configuration change at 11:29:06 IRK Sun Oct 20 2024 by krona
+! NVRAM config last updated at 11:46:54 IRK Sun Oct 20 2024 by krona
 !
 version 15.4
 service timestamps debug datetime msec
@@ -14,6 +14,7 @@ boot-start-marker
 boot-end-marker
 !
 !
+enable secret 5 $1$DMom$xl99cWTLbxeDwOLstlhnw1
 !
 aaa new-model
 !
@@ -87,7 +88,6 @@ ip ssh time-out 60
 ip ssh authentication-retries 5
 ip ssh rsa keypair-name IRK-MOLOKO-EDGE-R2
 ip ssh version 2
-ip ssh dh min size 2048
 ip scp server enable
 ! 
 !
@@ -259,9 +259,19 @@ line con 0
  no modem enable
 line aux 0
 line vty 0 4
+ exec-timeout 0 0
  privilege level 15
  logging synchronous
+ no domain-lookup
  transport input telnet ssh
+ transport output telnet ssh
+line vty 5 15
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+ no domain-lookup
+ transport input ssh
+ transport output ssh
 !
 scheduler allocate 20000 1000
 ntp server 10.129.135.110

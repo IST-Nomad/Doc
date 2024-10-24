@@ -1,7 +1,7 @@
 
 !
-! Last configuration change at 16:02:31 IRK Tue Jul 9 2024 by krona
-! NVRAM config last updated at 16:02:34 IRK Tue Jul 9 2024 by krona
+! Last configuration change at 15:44:27 IRK Tue Sep 24 2024 by kronadm
+! NVRAM config last updated at 15:44:51 IRK Tue Sep 24 2024 by kronadm
 !
 version 15.0
 no service pad
@@ -240,13 +240,13 @@ interface GigabitEthernet0/19
  spanning-tree portfast
 !
 interface GigabitEthernet0/20
- description === ASA MGMT ===
- switchport access vlan 135
+ description Finist_trans
+ switchport access vlan 300
  switchport mode access
- shutdown
+ spanning-tree portfast
 !
 interface GigabitEthernet0/21
- description Mikrotik
+ description D-Link
  switchport access vlan 135
  switchport trunk encapsulation dot1q
  switchport trunk native vlan 135
@@ -264,13 +264,10 @@ interface GigabitEthernet0/23
  switchport mode access
 !
 interface GigabitEthernet0/24
- description === ASA GE0/4 ===
- switchport trunk encapsulation dot1q
- switchport trunk allowed vlan 1,199,200,230
- switchport mode trunk
- switchport nonegotiate
- shutdown
- spanning-tree portfast trunk
+ description FinistAppServ
+ switchport access vlan 300
+ switchport mode access
+ spanning-tree portfast
 !
 interface GigabitEthernet1/1
 !
@@ -584,6 +581,11 @@ ip access-list extended VLAN201_IN
  permit tcp host 10.129.201.253 host 10.129.135.80 eq 2193
  permit tcp host 10.129.201.253 host 10.129.135.225 eq 445
  permit ip host 10.129.201.253 host 10.129.135.157
+ permit ip host 10.129.201.253 host 10.129.135.177
+ permit tcp host 10.129.201.253 host 10.129.135.177 eq 1433
+ permit tcp host 10.129.201.253 host 10.129.135.177 eq 445
+ permit tcp host 10.129.201.253 host 10.129.135.177 eq 139
+ permit icmp host 10.129.201.253 host 10.129.135.177
  deny   ip any any log
 ip access-list extended VLAN201_OUT
  permit udp host 10.129.135.199 eq nameserver host 10.129.201.253
@@ -644,6 +646,12 @@ ip access-list extended VLAN201_OUT
  permit tcp host 10.129.135.80 eq 2193 host 10.129.201.253
  permit tcp host 10.129.135.225 eq 445 host 10.129.201.253
  permit ip host 10.129.135.157 host 10.129.201.253
+ permit ip host 10.129.135.177 host 10.129.201.253
+ permit tcp host 10.129.135.177 eq 1433 host 10.129.201.253
+ permit tcp host 10.129.135.177 eq 445 host 10.129.201.253
+ permit tcp host 10.129.135.177 eq 139 host 10.129.201.253
+ permit tcp host 10.129.203.253 range 62500 65500 host 10.129.201.253
+ permit icmp host 10.129.135.177 host 10.129.201.253
  deny   ip any any log
 ip access-list extended VLAN202_IN
  permit tcp host 10.129.202.253 host 10.129.135.199 eq 42
@@ -830,6 +838,7 @@ ip access-list extended VLAN203_IN
  permit tcp host 10.129.203.253 host 10.129.135.80 eq 2193
  permit tcp host 10.129.203.253 host 10.129.135.225 eq 445
  permit ip host 10.129.203.253 host 10.129.135.157
+ permit ip host 10.129.203.253 host 10.129.201.253
  deny   ip any any log
 ip access-list extended VLAN203_OUT
  permit udp host 10.129.135.199 eq nameserver host 10.129.203.253
@@ -890,6 +899,8 @@ ip access-list extended VLAN203_OUT
  permit tcp host 10.129.135.80 eq 2193 host 10.129.203.253
  permit tcp host 10.129.135.225 eq 445 host 10.129.203.253
  permit ip host 10.129.135.157 host 10.129.203.253
+ permit ip host 10.129.201.253 host 10.129.203.253
+ permit tcp host 10.129.201.253 eq 8732 host 10.129.203.253
  deny   ip any any log
 ip access-list extended VLAN300-IN
  permit tcp any eq 3389 host 10.129.130.20

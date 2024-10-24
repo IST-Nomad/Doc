@@ -3,18 +3,22 @@
 //Сменить часовой пояс
 #sudo timedatectl set-timezone 'Asia/Irkutsk'
 
-
-//список служб systemctl
-#sudo systemctl list-units --type service
-//чтобы увидеть загруженные, но неактивные юниты, передайте опцию –all:
-#sudo systemctl list-units --type service --all
-//Если вы хотите увидеть все установленные файлы модулей, а не только загруженные, используйте:
-#sudo systemctl list-unit-files
-//Ччтобы определить текущий статус службы nginx, вы должны запустить:
-#sudo systemctl status nginx.service
-//чтобы убедиться, что служба nginx запущена, вы должны запустить:
-#sudo systemctl is-active nginx.service
-
 //Anydesk
 wget https://download.anydesk.com/rpi/anydesk_6.3.0-1_armhf.deb
 sudo dpkg -i anydesk_6.3.0-1_armhf.deb
+
+sudo apt-get install cifs-utils
+//Вот такой командой можно примонтировать папку, требующую авторизации по логину и паролю:
+sudo mount -t cifs //192.168.0.11/share /media/sharefolder -o username=windowsuser,password=windowspass,iocharset=utf8,file_mode=0777,dir_mode=0777
+//Для того чтобы осуществить автомонтирование
+sudo nano /root/.smbcredentials
+//В этот новый файл добавьте две строки:
+username=windowsuser
+password=windowspass
+//где, соответственно, windowsuser – имя пользователя с необходимыми правами доступа к ресурсу Windows, windowspass – пароль этого пользователя. Измените права созданного файла так, что редактировать и смотреть его смог только root, то есть сама система:
+sudo chmod 700 /root/.smbcredentials
+//Сохраните изменения и переходите к редактированию файла /etc/fstab:
+sudo nano /etc/fstab
+//И здесь в самом конце добавьте строку типа:
+
+#//192.168.0.11/share /media/sharefolder cifs credentials=/root/.smbcredentials,iocharset=utf8,file_mode=0777,dir_mode=0777 0 0
